@@ -49,6 +49,7 @@
             <li><b>D</b> - Go right</li>
             <li><b>A</b> - Go left</li>
             <li><b>W</b> - Jump</li>
+            <li><b>S</b> - Enter building / Action</li>
             <li><b>Enter</b> - Restart Map</li>
         </ul>
     </body>

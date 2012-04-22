@@ -6,7 +6,7 @@ var cocos = require("cocos2d"),
     Player = require("/Player"),
     Crate  = require("/Crate"),
     TextLine = require("/TextLine");
-    StartScreenMap = require("/maps/StartScreen"),
+    StartScreenMap = require("/maps/Ph0toshop"),
     GameEngine = require("/GameEngine"),
     ContactListener = require("/ContactListener");
 
@@ -40,6 +40,7 @@ PlanetGame.inherit(PhysicsNode, {
         this.map = null;
         this.player.lineQueue = [];
         this.player.textLine = null;
+        this.player.useTrigger = null;
         this.player.rotation = 0;
         this.player.sprite.stopAllActions();
         this.player.sprite.runAction(new cocos.actions.RepeatForever(this.player.idleSeq));

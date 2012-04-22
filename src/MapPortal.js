@@ -14,8 +14,9 @@ MapPortal.inherit(UseTrigger, {
     isUseTrigger: true,
     map: null,
     
-    trigger:function(dt) {
-        GameEngine.instance.game.loadMap(map);
+    trigger:function(person) {
+        person.game.loadMap(this.map);
+        person.useTrigger = null;
     },
 });
 

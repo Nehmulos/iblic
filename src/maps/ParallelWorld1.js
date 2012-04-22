@@ -9,7 +9,7 @@ var cocos = require("cocos2d"),
     Planet = require("/Planet"),
     Crate  = require("/Crate"),
     IceCream  = require("/IceCream"),
-    CallbackSensor = require("/CallbackSensor");
+    MapPortal = require("/MapPortal");
 
 function ParallelWorld1() {
     ParallelWorld1.superclass.constructor.call(this)
@@ -67,11 +67,13 @@ ParallelWorld1.inherit(Map, {
             });
             cbs.position = new geom.Point(s.width/2, s.height/2 - 128);
             cbs.contentSize = new geom.Size(20,20);
+            cbs.map = new ParallelWorld1();
             cbs.createPhysics(game.world, {isSensor:true, isStatic:true});
             cbs.playerTouchCallback = function(player) {
                 player.say([new TextLine({string: 'press "S" to enter buildins', delay:0})]);
             }
         }
+        // ps bar 400,135
         
         game.player.say([new TextLine({string: 'WOW, what happend!?!', delay:2}),
                          new TextLine({string: 'Everything looks so different.', delay:3}),
