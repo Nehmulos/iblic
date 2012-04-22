@@ -69,12 +69,12 @@ PlayerProfile.inherit(Object, {
         if (localStorage && localStorage.playerProfile) {
             var data = JSON.parse(localStorage.playerProfile);
             
-            this.name = data["name"];
-            this._iceCream = data["iceCream"];
-            this._deaths = data["deaths"];
-            this._gruesomeDeaths = data["gruesomeDeaths"];
-            this._portalsTaken = data["portalsTaken"];
-            this._decisions = data["decisions"];
+            this.name = data["name"] || "bob";
+            this._iceCream = data["iceCream"] || 0;
+            this._deaths = data["deaths"] || 0;
+            this._gruesomeDeaths = data["gruesomeDeaths"] || 0;
+            this._portalsTaken = data["portalsTaken"] || 0;
+            this._decisions = data["decisions"] || {};
         }
     },
     

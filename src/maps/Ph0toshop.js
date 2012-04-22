@@ -9,7 +9,8 @@ var cocos = require("cocos2d"),
     Planet = require("/Planet"),
     Crate  = require("/Crate"),
     IceCream  = require("/IceCream"),
-    MapPortal = require("/MapPortal");
+    MapPortal = require("/MapPortal"),
+    UseTrigger = require("/UseTrigger");
 
 function Ph0toshop() {
     Ph0toshop.superclass.constructor.call(this)
@@ -92,9 +93,40 @@ Ph0toshop.inherit(Map, {
         barman.position = new geom.Point(bar.position.x + (bar.contentSize.width/4)*3, bar.position.y);
         game.addChild({child:barman});
         barman.createPhysics(game.world, {isStatic:true, isSensor:true});
-        barman.textColor = "yellow";
-        barman.say([new TextLine({string: 'Customers!', delay:2})
-        ]);
+        barman.textColor = "lightgreen";
+        barman.say([new TextLine({string: 'Customers!', delay:2})]);
+        
+        var talkRegion = new UseTrigger();
+        talkRegion.position = bar.position;
+        talkRegion.contentSize = new geom.Size(bar.contentSize.width + 80,300);
+        talkRegion.createPhysics(game.world, {isSensor:true, isStatic:true});
+        talkRegion.onUseCallback = function() {
+            
+            if (!game.engine.playerProfile.getDecision("ps.talkedWithShopkeeper1")) {
+                
+                if (!game.player.textLine && !barman.textLine) {
+    
+                    // oh no the horror
+                    game.player.say([new TextLine({string: 'Hi, do you have icecream?',delay:3, 
+                        onEndedCallback:function() {
+                            barman.say([new TextLine({string: "We're a photomarket! we develop your photos!",delay:4}),
+                                        new TextLine({string: "but I think that I sill have some outside.",delay:3}),
+                                        new TextLine({string: "If you find it you can keep it.",delay:3}),
+                                        new TextLine({string: "and that's cutting me own throat.",delay:3,
+                                onEndedCallback:function() {
+                                    game.player.say([new TextLine({string: 'Uhm... thanks!',delay:2})]);
+                                    game.engine.playerProfile.setDecision("ps.talkedWithShopkeeper1", true);
+                                }                        
+                            })]);                
+                        }
+                    })]);
+                }
+            } else {
+                if (!barman.textLine) {
+                    barman.say([new TextLine({string: "Buy something, or go away.",delay:2})]);
+                }
+            }
+        }
     },
     
     update:function(dt) {

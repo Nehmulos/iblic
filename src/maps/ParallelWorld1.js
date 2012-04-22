@@ -9,7 +9,9 @@ var cocos = require("cocos2d"),
     Planet = require("/Planet"),
     Crate  = require("/Crate"),
     IceCream  = require("/IceCream"),
-    MapPortal = require("/MapPortal");
+    MapPortal = require("/MapPortal"),
+    Cat = require("/Cat"),
+    Ironbar = require("/Ironbar");
 
 function ParallelWorld1() {
     ParallelWorld1.superclass.constructor.call(this)
@@ -17,6 +19,7 @@ function ParallelWorld1() {
 }
 
 ParallelWorld1.inherit(Map, {
+    ufoTime:false,
 
     loadEffect: function() {
         
@@ -92,6 +95,63 @@ ParallelWorld1.inherit(Map, {
             spawnPh0toshop("instant");
             game.player.position = new geom.Point(s.width/2 + 40, s.height/2 - 165);
             game.player.rotation = 160;
+            
+            var cat = new Cat();
+            cat.position = new geom.Point(s.width/2 + 90, s.height/2 - 140);
+            cat.createPhysics(game.world, {fixedRotation:true});
+            cat.textColor = "yellow";
+            cat.game = game;
+            cat.say([new TextLine({string: 'meow!', delay:2})
+            ]);
+            game.addChild({child:cat});
+            
+            if (game.engine.playerProfile.getDecision("ps.talkedWithShopkeeper1")) {
+                var ironbar = new Ironbar();
+                ironbar.position = new geom.Point(s.width/2, s.height-60);
+                ironbar.createPhysics(game.world, {isStatic:true});
+                ironbar.isGround = false;
+                game.addChild({child:ironbar});
+                
+                var ice = new IceCream();
+                ice.position = new geom.Point(s.width/2, s.height);
+                ice.createPhysics(game.world, {});
+                ice.map = "Credits";
+                ice.eatDelay = 5;
+                var self = this;
+                ice.onEatCallback = function() {
+                    console.log("ufo time!");
+                    self.ufoTime = true;
+                    var ufo = new cocos.nodes.Sprite({
+                        file: "/gfx/ufo.png",
+                        rect: new geom.Rect(0,0, 128, 88)
+                    });
+                    ufo.position = new geom.Point(0 - ufo.contentSize.width/2, s.height - ufo.contentSize.height/2);
+                    ufo.zOrder = 10;
+                    
+                    var seq = new cocos.actions.Sequence({ actions:[
+                        new cocos.actions.MoveTo({
+                            position: new geom.Point(s.width/2, ufo.position.y),
+                            duration: 1.5
+                        }),
+                        new cocos.actions.MoveTo({
+                            position: new geom.Point(s.width/2, ufo.position.y),
+                            duration: 2
+                        }),
+                        new cocos.actions.MoveTo({
+                            position: new geom.Point(s.width+ ufo.contentSize.width, ufo.position.y),
+                            duration: 1.5
+                        }),
+                    ]});
+                
+                    ufo.runAction(seq);
+                    game.addChild({child:ufo});
+                    
+                    game.player.body.SetLinearVelocity(new box2d.b2Vec2(0,0));
+                    game.player.body.ApplyTorque(90);
+                    game.player.canMove = false;
+                }
+                game.addChild({child:ice});
+            }
         }
         
         game.player.createPhysics(game.world, {restitution:0, fixedRotation:true});
@@ -99,6 +159,10 @@ ParallelWorld1.inherit(Map, {
     },
     
     update:function(dt) {
+        if (this.ufoTime && this.game.player.sprite.opacity >= 2) {
+            console.log("decline");
+            this.game.player.sprite.opacity -= 2;
+        }
     },
 });
 

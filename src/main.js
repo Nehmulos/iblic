@@ -45,7 +45,7 @@ function main () {
 
         // Run the scene
         director.replaceScene(scene)
-        director.backgroundColor = "rgb(255, 255,255)"
+//        director.backgroundColor = "rgb(255, 255,255)"
 /*
         director.canvas.getContext("2d").translate(800/4,
                                            600/4)
@@ -62,6 +62,10 @@ function main () {
 
 window.getResourcePath = function(cocosPath) {
     return __jah__.assetURL + cocosPath;
+}
+
+window.rrandom = function(minValue, maxValue) {
+    return (maxValue - minValue) * Math.random() + minValue;
 }
 
 exports.main = main

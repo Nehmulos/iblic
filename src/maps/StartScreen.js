@@ -40,6 +40,7 @@ StartScreen.inherit(Map, {
             game.addChild({child:crate});
         }
         */
+        var self = this;
         var spawnIceCream = function() {
             var s = cocos.Director.sharedDirector.winSize
         
@@ -62,16 +63,59 @@ StartScreen.inherit(Map, {
                 position: new geom.Point(s.width/2 - 128, s.height/2 - 128),
                 duration: 2
             })
-        
-            freeSign.runAction(moveAction);
             
+            var showCredits = function() {
+                console.log("callback");
+                var credits = new cocos.nodes.Sprite({
+                    file: "/gfx/credits.png",
+                    rect: new geom.Rect(0,0, 133, 45)
+                });
+                credits.anchorPoint = new geom.Point(1,1);
+                credits.position = new geom.Point(s.width, 0);
+                credits.zOrder = 10;
+                
+                var moveAction = new cocos.actions.MoveTo({ 
+                    position: new geom.Point(s.width, 45),
+                    duration: 2
+                })
+                
+                credits.runAction(moveAction);
+                game.addChild({child:credits});            
+            }
+            
+            var seq = new cocos.actions.Sequence({ actions: [
+                new cocos.actions.CallFunc({ target:self, method: "showCredits" }),
+                moveAction
+            ]});
+            
+            freeSign.runAction(moveAction);
             game.addChild({child:freeSign});
         }
         
         
-        game.player.say([new TextLine({string: 'Hello', delay:3}),
-                         new TextLine({string: 'I like icecream', delay:4, onEndedCallback:spawnIceCream})
+        game.player.say([new TextLine({string: 'Hello', delay:1}),
+                         new TextLine({string: 'I like icecream', delay:1, onEndedCallback:spawnIceCream})
         ]);
+    },
+    
+    showCredits: function() {
+        console.log("callback");
+        var s = cocos.Director.sharedDirector.winSize
+        var credits = new cocos.nodes.Sprite({
+            file: "/gfx/credits.png",
+            rect: new geom.Rect(0,0, 133, 45)
+        });
+        credits.anchorPoint = new geom.Point(1,1);
+        credits.position = new geom.Point(s.width, 0);
+        credits.zOrder = 10;
+        
+        var moveAction = new cocos.actions.MoveTo({ 
+            position: new geom.Point(s.width, 45),
+            duration: 2
+        })
+        
+        credits.runAction(moveAction);
+        this.gamegame.addChild({child:credits});            
     },
     
     update:function(dt) {

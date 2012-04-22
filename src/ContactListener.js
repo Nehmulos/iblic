@@ -21,6 +21,12 @@ ContactListener.inherit(box2d.b2ContactListener, {
                 this.playerIceCreamCollision(objectB, objectA);      
             }
             
+            if (objectA.type == "player" && objectB.type == "cat") {
+                this.playerCatCollision(objectA, objectB);      
+            } else if(objectB.type == "player" && objectA.type == "cat") {
+                this.playerCatCollision(objectB, objectA);      
+            }
+            
             if (objectA.isPerson && objectB.isGround) {
                 this.personGrounded(objectA, objectB);      
             } else if(objectB.isPerson && objectA.isGround) {
@@ -76,7 +82,7 @@ ContactListener.inherit(box2d.b2ContactListener, {
         if(player.isDead) {
             return;
         }
-    
+        /*    
         var loadMap = function() {
             // flippin bug disallows me including the GameEngine directly
             player.game.loadMapByName(iceCream.map);
@@ -84,6 +90,12 @@ ContactListener.inherit(box2d.b2ContactListener, {
         player.say([new TextLine({string:"yummie!", delay:2, onEndedCallback:loadMap})]);
         player.game.engine.playerProfile.addIceCream();;
         iceCream.destroyed = true;
+        */
+        iceCream.trigger(player);
+    },
+    
+    playerCatCollision: function(player, cat) {
+        cat.randomMeow();
     },
     
     personUseTriggerCollision: function(person, trigger) {

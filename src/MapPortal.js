@@ -11,12 +11,13 @@ function MapPortal() {
 }
 
 MapPortal.inherit(UseTrigger, {
-    isUseTrigger: true,
     map: null,
     
     trigger:function(person) {
-        person.game.loadMapByName(this.map);
         person.useTrigger = null;
+        person.game.loadMapByName(this.map);
+        person.game.engine.playerProfile.addPortalsTaken();
+        MapPortal.superclass.trigger.call(this, person);
     },
 });
 

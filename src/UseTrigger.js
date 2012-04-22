@@ -12,9 +12,12 @@ function UseTrigger() {
 
 UseTrigger.inherit(PhysicsNode, {
     isUseTrigger: true,
+    onUseCallback: null,
     
-    trigger:function(dt) {
-        // overwrite me
+    trigger:function(person) {
+        if (this.onUseCallback) {
+            this.onUseCallback(person, this);
+        }
     },
 });
 

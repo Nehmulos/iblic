@@ -30,8 +30,10 @@ PlanetGame.inherit(PhysicsNode, {
     },
     
     loadMapByName: function(name) {
-        this.engine.playerProfile.setDecision("lastMap", name);
         this.loadMap(this.maplist.maps[name]);
+        if (this.maplist.maps[name].storeAsLastMap) {
+            this.engine.playerProfile.setDecision("lastMap", name);
+        }
     },
     
     loadMap: function(map) {
@@ -48,10 +50,13 @@ PlanetGame.inherit(PhysicsNode, {
         this.map = null;
         this.planet = null;
         this.player.reset();
+        cocos.Director.sharedDirector.backgroundColor = "rgb(255,255,255)"
     },
 
     update: function() {
-        
+        if (this.map && this.map.update) {
+            this.map.update();
+        }
     }
 });
 

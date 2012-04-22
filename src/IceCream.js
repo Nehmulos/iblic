@@ -19,8 +19,21 @@ function IceCream() {
 
 IceCream.inherit(MapPortal, {
     type: "icecream",
-    trigger:function() {
-        IceCream.superclass.trigger.call(this)
+    eatDelay: 2,
+    onEatCallback:null,
+    
+    trigger:function(player) {
+        var self = this;
+        var loadMap = function() {
+            IceCream.superclass.trigger.call(self, player)
+        }
+        player.say([new TextLine({string:"yummie!", delay:this.eatDelay, onEndedCallback:loadMap})]);
+        player.game.engine.playerProfile.addIceCream();
+        
+        if (this.onEatCallback) {
+            this.onEatCallback();
+        }
+        this.destroyed = true;
     },
 });
 
