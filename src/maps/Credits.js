@@ -65,6 +65,8 @@ StartScreen.inherit(Map, {
             new cocos.nodes.Label({string: "Thanks to all the developers of", fontSize:24}),
             new cocos.nodes.Label({string: "GIMP, gedit, GNU/Linux, Stranded II", fontSize:24}),
             new cocos.nodes.Label({string: " ", fontSize:30}),
+            new cocos.nodes.Label({string: "and screw everyone who added a bug fglrx", fontSize:24}),
+            new cocos.nodes.Label({string: " ", fontSize:30}),
             new cocos.nodes.Label({string: "Created for Ludum Daré #23", fontSize:24}),
             new cocos.nodes.Label({string: "in 48 hours", fontSize:24}),
             new cocos.nodes.Label({string: " ", fontSize:30}),
@@ -98,7 +100,7 @@ StartScreen.inherit(Map, {
         var seq = new cocos.actions.Sequence({ actions:[
             new cocos.actions.MoveTo({
                 position: new geom.Point(this.node.position.x, s.height + this.node.contentSize.height),
-                duration: 140
+                duration: 160
             }),
         ]});
     

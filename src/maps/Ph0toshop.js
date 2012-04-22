@@ -110,7 +110,7 @@ Ph0toshop.inherit(Map, {
                     game.player.say([new TextLine({string: 'Hi, do you have icecream?',delay:3, 
                         onEndedCallback:function() {
                             barman.say([new TextLine({string: "We're a photomarket! we develop your photos!",delay:4}),
-                                        new TextLine({string: "but I think that I sill have some outside.",delay:3}),
+                                        new TextLine({string: "but I think that I sill have some outside.",delay:4}),
                                         new TextLine({string: "If you find it you can keep it.",delay:3}),
                                         new TextLine({string: "and that's cutting me own throat.",delay:3,
                                 onEndedCallback:function() {

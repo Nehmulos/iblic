@@ -93,8 +93,8 @@ StartScreen.inherit(Map, {
         }
         
         
-        game.player.say([new TextLine({string: 'Hello', delay:1}),
-                         new TextLine({string: 'I like icecream', delay:1, onEndedCallback:spawnIceCream})
+        game.player.say([new TextLine({string: 'Hello', delay:3}),
+                         new TextLine({string: 'I like icecream', delay:3, onEndedCallback:spawnIceCream})
         ]);
     },
     
