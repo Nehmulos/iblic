@@ -6,7 +6,7 @@ var cocos = require("cocos2d"),
     Player = require("/Player"),
     Crate  = require("/Crate"),
     TextLine = require("/TextLine");
-    StartScreenMap = require("/maps/Ph0toshop"),
+    Maplist = require("/maps/Maplist"),
     GameEngine = require("/GameEngine"),
     ContactListener = require("/ContactListener");
 
@@ -17,13 +17,21 @@ function PlanetGame(engine) {
     this.player = new Player();
     this.player.game = this;
     this.planet = null;
-    this.loadMap(new StartScreenMap());
+    this.maplist = new Maplist();
+    
+    var startMap = this.engine.playerProfile.getDecision("lastMap") || "Startmap";
+    this.loadMapByName(startMap);
 }
 
 PlanetGame.inherit(PhysicsNode, {
     
     reset: function() {
         this.loadMap(this.map);
+    },
+    
+    loadMapByName: function(name) {
+        this.engine.playerProfile.setDecision("lastMap", name);
+        this.loadMap(this.maplist.maps[name]);
     },
     
     loadMap: function(map) {
@@ -38,12 +46,8 @@ PlanetGame.inherit(PhysicsNode, {
         this.world.SetContactListener(new ContactListener());
         this.removeChildren({cleanup:true});
         this.map = null;
-        this.player.lineQueue = [];
-        this.player.textLine = null;
-        this.player.useTrigger = null;
-        this.player.rotation = 0;
-        this.player.sprite.stopAllActions();
-        this.player.sprite.runAction(new cocos.actions.RepeatForever(this.player.idleSeq));
+        this.planet = null;
+        this.player.reset();
     },
 
     update: function() {

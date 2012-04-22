@@ -4,20 +4,21 @@ var cocos = require("cocos2d"),
     PhysicsNode = require("/PhysicsNode"),
     Input = require("/Input");
 
-function Crate() {
-    type:"crate",
-    Crate.superclass.constructor.call(this)
+function Spikes() {
+    Spikes.superclass.constructor.call(this)
     this.sprite = new cocos.nodes.Sprite({
-        file: "/gfx/crate.png",
-        rect: new geom.Rect(0,0,32, 32)
+        file: "/gfx/spikes.png",
+        rect: new geom.Rect(0,0,64, 43)
     });
     this.sprite.anchorPoint = new geom.Point(0,0);
     this.contentSize = this.sprite.contentSize;
     this.addChild({child:this.sprite});
 }
 
-Crate.inherit(PhysicsNode, {
-    isGround:true
+Spikes.inherit(PhysicsNode, {
+    type:"spikes",
+    isDeadly: true,
+    smallBox: new geom.Rect(0,0, 50, 40)
 });
 
-module.exports = Crate;
+module.exports = Spikes;

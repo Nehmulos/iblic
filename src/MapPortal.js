@@ -15,7 +15,7 @@ MapPortal.inherit(UseTrigger, {
     map: null,
     
     trigger:function(person) {
-        person.game.loadMap(this.map);
+        person.game.loadMapByName(this.map);
         person.useTrigger = null;
     },
 });

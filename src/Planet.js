@@ -15,6 +15,7 @@ function Planet() {
 }
 
 Planet.inherit(PhysicsNode, {
+    isGround:true,
     sprite:null,
     gravityModifier:10,
     

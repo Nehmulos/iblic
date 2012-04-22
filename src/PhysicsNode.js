@@ -26,7 +26,9 @@ PhysicsNode.inherit(cocos.nodes.Node, {
             fixture = fixture.GetNext();
         }
         */
-        this.body.m_world.DestroyBody(this.body);
+        if (this.body && this.body.m_world) {
+            this.body.m_world.DestroyBody(this.body);
+        }
     },
 
     /*

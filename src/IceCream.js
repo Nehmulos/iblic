@@ -21,7 +21,6 @@ IceCream.inherit(MapPortal, {
     type: "icecream",
     trigger:function() {
         IceCream.superclass.trigger.call(this)
-        GameEngine.instance.playerProfile.icecream++;
     },
 });
 

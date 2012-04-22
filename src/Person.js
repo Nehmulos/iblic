@@ -17,6 +17,7 @@ function Person() {
     ];
 
     this.sprite = new cocos.nodes.Sprite({
+        texture:texture,
         rect: animFrames[0].rect
     });
     
@@ -33,13 +34,19 @@ function Person() {
 
 Person.inherit(PhysicsNode, {
     isPerson:true,
+    canMove:true,
+    isDead:false,
     sprite:null,
     useTrigger:null,
     speed: 10 / PhysicsNode.physicsScale,
-    jumpSpeed: 60 / PhysicsNode.physicsScale,
+    jumpSpeed: 35 / PhysicsNode.physicsScale,
     maxSpeed: 150 / PhysicsNode.physicsScale,
+    jumpImpulses: 0,
+    groundedCount: 0,
+    textColor: "white",
     textLine: null,
     lineQueue: [],
+    onDeathCallback:null,
     
     update:function(dt) {
         Person.superclass.update.call(this);
@@ -87,6 +94,11 @@ Person.inherit(PhysicsNode, {
         
     },
     
+    createPhysics: function(world, ops) {
+        ops.boundingBox = ops.boundingBox || new geom.Rect(0,0, 15,64);
+        Person.superclass.createPhysics.call(this, world, ops);
+    },
+    
     useAction: function() {
         /*
         var aabb = new box2d.b2AABB()
@@ -120,9 +132,25 @@ Person.inherit(PhysicsNode, {
         }
     },
     
+    die: function() {
+        var self = this;
+        var onDeath = function() {
+            self.destroyed = true;
+            if (self.onDeathCallback) {
+                self.onDeathCallback();
+            }
+        }
+        this.canMove = false;
+        this.isDead = true;
+//        this.body.SetLinearVelocity(new box2d.b2Vec2(0,0));
+        this.body.SetFixedRotation(false);
+        this.body.ApplyTorque(90);
+        this.say([new TextLine({string: 'Uarghs!', delay:1, onEndedCallback:onDeath})]);
+    },
+    
     goLeft: function() {
         this.sprite.flipX = true;
-        if (this.body.GetLinearVelocity().x > -this.maxSpeed) {
+        if (this.canMove && this.body.GetLinearVelocity().x > -this.maxSpeed) {
         
         	var yImpulse = Math.sin(-this.body.GetAngle()) * (this.speed);
 	        var xImpulse = Math.cos(-this.body.GetAngle()) * (this.speed);
@@ -133,7 +161,7 @@ Person.inherit(PhysicsNode, {
     
     goRight: function() {
         this.sprite.flipX = false;
-        if (this.body.GetLinearVelocity().x < this.maxSpeed) {
+        if (this.canMove && this.body.GetLinearVelocity().x < this.maxSpeed) {
         
         	var yImpulse = Math.sin(this.body.GetAngle()) * (this.speed);
 	        var xImpulse = Math.cos(this.body.GetAngle()) * (this.speed);
@@ -143,16 +171,23 @@ Person.inherit(PhysicsNode, {
     },
     
     jump: function() {
-        if (this.body.GetLinearVelocity().y < this.maxSpeed) {
-            
-            	var xImpulse = Math.sin(this.body.GetAngle()) * (this.jumpSpeed);
-		        var yImpulse = Math.cos(this.body.GetAngle()) * (this.jumpSpeed);
-            
-                this.body.ApplyImpulse(new box2d.b2Vec2(-xImpulse, yImpulse), this.body.GetWorldCenter());
+        if (this.canMove && this.body.GetLinearVelocity().y < this.maxSpeed && this.groundedCount > 0) {
+            this.jumpImpulses = 20;  
+        }
+        
+        if (this.canMove && this.jumpImpulses > 0) {
+        	var xImpulse = Math.sin(this.body.GetAngle()) * (this.jumpSpeed);
+            var yImpulse = Math.cos(this.body.GetAngle()) * (this.jumpSpeed);
+        
+            this.body.ApplyImpulse(new box2d.b2Vec2(-xImpulse, yImpulse), this.body.GetWorldCenter());
+            this.jumpImpulses--;
         }
     },
     
     say: function(lines) {
+        for (var key in lines) {
+            lines[key].fontColor = this.textColor;
+        }
         this.lineQueue = this.lineQueue.concat(lines);
     }
 });

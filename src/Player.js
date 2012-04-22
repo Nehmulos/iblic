@@ -12,6 +12,23 @@ function Player() {
 
 Player.inherit(Person, {
     type: "player",
+    onDeathCallback: function() {
+        this.game.engine.playerProfile.addDeath();
+        this.game.reset();
+    },
+    
+    reset: function() {
+        this.destroy();
+        this.lineQueue = [];
+        this.textLine = null;
+        this.useTrigger = null;
+        this.rotation = 0;
+        this.sprite.stopAllActions();
+        this.destroyed = false;
+        this.canMove = true;
+        this.isDead = false;
+        this.sprite.runAction(new cocos.actions.RepeatForever(this.idleSeq));
+    },
     
     update:function(dt) {
         Player.superclass.update.call(this, dt);

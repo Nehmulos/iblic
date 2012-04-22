@@ -46,6 +46,13 @@ function main () {
         // Run the scene
         director.replaceScene(scene)
         director.backgroundColor = "rgb(255, 255,255)"
+/*
+        director.canvas.getContext("2d").translate(800/4,
+                                           600/4)
+        director.canvas.getContext("2d").scale(0.75, 0.75)
+        director.canvas.width = 800/4*3
+        director.canvas.height = 600/4*3
+*/
     })
 
     // Preload our assets

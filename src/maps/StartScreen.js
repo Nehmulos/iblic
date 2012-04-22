@@ -8,8 +8,7 @@ var cocos = require("cocos2d"),
     Person = require("/Person"),
     Planet = require("/Planet"),
     Crate  = require("/Crate"),
-    IceCream  = require("/IceCream"),
-    ParallelWorld1 = require("/maps/ParallelWorld1");
+    IceCream  = require("/IceCream");
 
 function StartScreen() {
     StartScreen.superclass.constructor.call(this)
@@ -48,7 +47,7 @@ StartScreen.inherit(Map, {
             ice.position = new geom.Point(s.width/2, 0);
             ice.rotation = 180;
             ice.createPhysics(game.world, {shapeType:"circle"});
-            ice.map = new ParallelWorld1();
+            ice.map = "Icemap2";
             game.addChild({child:ice});
             
             var freeSign = new cocos.nodes.Sprite({

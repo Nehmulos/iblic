@@ -51,6 +51,8 @@
             <li><b>W</b> - Jump</li>
             <li><b>S</b> - Enter building / Action</li>
             <li><b>Enter</b> - Restart Map</li>
+            <li><b>N</b> - Enter Player Name</li>
+            <li><b>Backspace</b> - Delete Savegame</li>
         </ul>
     </body>
 </html>

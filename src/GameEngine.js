@@ -5,6 +5,7 @@ var cocos  = require('cocos2d')   // Import the cocos2d module
   , geo    = require('geometry')  // Import the geometry module
   , ccp    = geo.ccp              // Short hand to create points
   , PhysicsNode = require("/PhysicsNode")
+  , PlayerProfile = require("/PlayerProfile")
   , Planet = require("/Planet")
   , box2d  = require("box2d")
   , Player = require("/Player")
@@ -27,14 +28,8 @@ function GameEngine () {
     // You must always call the super class constructor
     GameEngine.superclass.constructor.call(this)
     
-    this.playerProfile = {
-        name: "bob",
-        iceCream: 0,
-        deaths: 0,
-        gruesomeDeaths: 0,
-        portalsTaken: 0,
-    }
-    this.restoreProfile();
+    this.playerProfile = new PlayerProfile();
+    this.playerProfile.restore();
 
     this.isKeyboardEnabled = true;
     this.game = new PlanetGame(this);
@@ -78,23 +73,30 @@ GameEngine.inherit(Layer, {
         this.game.update(dt);
     },
     
-    storeProfile: function() {
-        if (localStorage && this.playerProfile) {
-            localStorage.playerProfile = JSON.stringify(this.playerProfile);
-        }
-    },
-    
-    restoreProfile: function() {
-         if (localStorage && localStorage.playerProfile) {
-            this.playerProfile = JSON.parse(localStorage.playerProfile);
-        }
-    },
-    
     keyDown: function(event) {
         Input.instance.keysDown[event.keyCode] = true;
         
         if (event.keyCode == 13) {
             this.game.reset();
+        }
+        
+        if (event.keyCode == 8) {
+            var okay = confirm("delete savegame, progress and statistics?");
+            if (okay) {
+                this.removeChild(this.game);
+                this.playerProfile = new PlayerProfile();
+                this.game = new PlanetGame(this);
+                this.addChild({child:this.game});
+            }
+        }
+        
+        if (event.keyCode == 78) {
+            var name = this.playerProfile.name;
+            name = prompt("Enter your name", name);
+            name = name.replace(/^\s*/, "").replace(/\s*$/, "");
+            if (name != null && name != "") {
+                this.playerProfile.name = name;
+            }
         }
     },
     

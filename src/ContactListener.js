@@ -21,10 +21,22 @@ ContactListener.inherit(box2d.b2ContactListener, {
                 this.playerIceCreamCollision(objectB, objectA);      
             }
             
+            if (objectA.isPerson && objectB.isGround) {
+                this.personGrounded(objectA, objectB);      
+            } else if(objectB.isPerson && objectA.isGround) {
+                this.personGrounded(objectB, objectA);      
+            }
+            
             if (objectA.isUseTrigger && objectB.isPerson) {
                 this.personUseTriggerCollision(objectB, objectA);
             } else if(objectB.isUseTrigger && objectA.isPerson) {
                 this.personUseTriggerCollision(objectA, objectB);
+            }
+            
+            if (objectA.isDeadly && objectB.isPerson) {
+                this.personDeadlyCollision(objectB, objectA);
+            } else if(objectB.isDeadly && objectA.isPerson) {
+                this.personDeadlyCollision(objectA, objectB);
             }
         }
     },
@@ -39,17 +51,38 @@ ContactListener.inherit(box2d.b2ContactListener, {
             } else if(objectB.isUseTrigger && objectA.isPerson) {
                 this.personUseTriggerLeave(objectA, objectB);
             }
+            
+            if (objectA.isPerson && objectB.isGround) {
+                this.personUnGrounded(objectA, objectB);      
+            } else if(objectB.isPerson && objectA.isGround) {
+                this.personUnGrounded(objectB, objectA);      
+            }
         }
     },
     
+    personGrounded: function(person, ground) {
+        person.groundedCount++;
+    },
+    
+    personUnGrounded: function(person, ground) {
+         person.groundedCount--;
+    },
+    
+    personDeadlyCollision: function(person, killer) {
+        person.die();
+    },
+    
     playerIceCreamCollision: function(player, iceCream) {
+        if(player.isDead) {
+            return;
+        }
+    
         var loadMap = function() {
             // flippin bug disallows me including the GameEngine directly
-            player.game.loadMap(iceCream.map);
+            player.game.loadMapByName(iceCream.map);
         }
         player.say([new TextLine({string:"yummie!", delay:2, onEndedCallback:loadMap})]);
-        player.game.engine.playerProfile.icecream++;
-        player.game.engine.storeProfile();
+        player.game.engine.playerProfile.addIceCream();;
         iceCream.destroyed = true;
     },
     
