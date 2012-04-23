@@ -53,9 +53,9 @@ StartScreen.inherit(Map, {
             new cocos.nodes.Label({string: " ", fontSize:30}),
             new cocos.nodes.Label({string: " ", fontSize:30}),
             new cocos.nodes.Label({string: " ", fontSize:30}),
-            new cocos.nodes.Label({string: " ", fontSize:30}),
             new cocos.nodes.Label({string: "Credits", fontSize:62}),
             new cocos.nodes.Label({string: "Code:      Nehmulos", fontSize:24}),
+            new cocos.nodes.Label({string: "Idea:      Nehmulos", fontSize:24}),
             new cocos.nodes.Label({string: "Graphics:  Nehmulos", fontSize:24}),
             new cocos.nodes.Label({string: "Sound:     Nehmulos", fontSize:24}),
             new cocos.nodes.Label({string: " ", fontSize:30}),
@@ -100,7 +100,7 @@ StartScreen.inherit(Map, {
         var seq = new cocos.actions.Sequence({ actions:[
             new cocos.actions.MoveTo({
                 position: new geom.Point(this.node.position.x, s.height + this.node.contentSize.height),
-                duration: 160
+                duration: 155
             }),
         ]});
     

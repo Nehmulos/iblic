@@ -53,9 +53,9 @@ PlanetGame.inherit(PhysicsNode, {
         cocos.Director.sharedDirector.backgroundColor = "rgb(255,255,255)"
     },
 
-    update: function() {
+    update: function(dt) {
         if (this.map && this.map.update) {
-            this.map.update();
+            this.map.update(dt);
         }
     }
 });

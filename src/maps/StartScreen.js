@@ -16,9 +16,13 @@ function StartScreen() {
 }
 
 StartScreen.inherit(Map, {
+    waitToShowCredits: false,
+    creditsTimer: 5,
+    
 
     setup: function(game) {
         this.game = game;
+        waitToShowCredits = false;
         StartScreen.superclass.constructor.call(this, game)
         // Get size of canvas
         var s = cocos.Director.sharedDirector.winSize
@@ -84,10 +88,12 @@ StartScreen.inherit(Map, {
             }
             
             var seq = new cocos.actions.Sequence({ actions: [
-                new cocos.actions.CallFunc({ target:self, method: "showCredits" }),
+//                new cocos.actions.CallFunc({ target:self, method: "showCredits" }),
                 moveAction
             ]});
             
+            self.waitToShowCredits = true;
+            self.creditsTimer = 5.0;
             freeSign.runAction(moveAction);
             game.addChild({child:freeSign});
         }
@@ -99,7 +105,6 @@ StartScreen.inherit(Map, {
     },
     
     showCredits: function() {
-        console.log("callback");
         var s = cocos.Director.sharedDirector.winSize
         var credits = new cocos.nodes.Sprite({
             file: "/gfx/credits.png",
@@ -115,10 +120,18 @@ StartScreen.inherit(Map, {
         })
         
         credits.runAction(moveAction);
-        this.gamegame.addChild({child:credits});            
+        this.game.addChild({child:credits});            
     },
     
     update:function(dt) {
+        if (this.waitToShowCredits) {
+            if (this.creditsTimer > 0) {
+                this.creditsTimer -= dt;
+            } else {
+                this.showCredits();
+                this.waitToShowCredits = false;
+            }
+        }
     },
 });
 
