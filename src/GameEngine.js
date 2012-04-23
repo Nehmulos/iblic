@@ -85,6 +85,7 @@ GameEngine.inherit(Layer, {
             if (okay) {
                 this.removeChild(this.game);
                 this.playerProfile = new PlayerProfile();
+                this.playerProfile.store();
                 this.game = new PlanetGame(this);
                 this.addChild({child:this.game});
             }

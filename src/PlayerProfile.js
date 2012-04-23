@@ -2,6 +2,13 @@ var cocos = require("cocos2d");
 
 function PlayerProfile() {
     PlayerProfile.superclass.constructor.call(this)
+    
+    this.name = "bob";
+    this._iceCream = 0;
+    this._deaths = 0;
+    this._gruesomeDeaths = 0;
+    this._portalsTaken = 0;
+    this._decisions = {};
 }
 
 PlayerProfile.inherit(Object, {
