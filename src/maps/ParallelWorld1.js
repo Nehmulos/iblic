@@ -29,6 +29,8 @@ ParallelWorld1.inherit(Map, {
         this.game = game;
         ParallelWorld1.superclass.constructor.call(this, game)
         
+        this.ufoTime = false;
+        
         // Get size of canvas
         var s = cocos.Director.sharedDirector.winSize
     
