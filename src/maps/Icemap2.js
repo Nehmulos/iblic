@@ -25,6 +25,10 @@ Icemap2.inherit(Map, {
 
     setup: function(game) {
         this.game = game;
+        
+        this.waitToShowCredits = true;
+        this.creditsTimer = 0;
+        
         Icemap2.superclass.constructor.call(this, game)
         // Get size of canvas
         var s = cocos.Director.sharedDirector.winSize
@@ -90,7 +94,35 @@ Icemap2.inherit(Map, {
         ]);
     },
     
+    
+    showCredits: function() {
+        var s = cocos.Director.sharedDirector.winSize
+        var credits = new cocos.nodes.Sprite({
+            file: "/gfx/credits.png",
+            rect: new geom.Rect(0,0, 133, 45)
+        });
+        credits.anchorPoint = new geom.Point(1,1);
+        credits.position = new geom.Point(s.width, 0);
+        credits.zOrder = 10;
+        
+        var moveAction = new cocos.actions.MoveTo({ 
+            position: new geom.Point(s.width, 45),
+            duration: 2
+        })
+        
+        credits.runAction(moveAction);
+        this.game.addChild({child:credits});            
+    },
+    
     update:function(dt) {
+        if (this.waitToShowCredits) {
+            if (this.creditsTimer > 0) {
+                this.creditsTimer -= dt;
+            } else {
+                this.showCredits();
+                this.waitToShowCredits = false;
+            }
+        }
     },
 });
 
