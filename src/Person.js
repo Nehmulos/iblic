@@ -25,7 +25,7 @@ function Person() {
       , animate   = new cocos.actions.Animate({ animation: animation, restoreOriginalFrame: false });
     this.idleSeq  = new cocos.actions.Sequence({ actions: [animate] });
 
-    this.sprite.anchorPoint = new geom.Point(0,0);
+    this.sprite.anchorPoint = new geom.Point(0.5,0.5);
     this.contentSize = this.sprite.contentSize;
     this.addChild({child:this.sprite});
     
@@ -55,6 +55,7 @@ Person.inherit(PhysicsNode, {
         
             this.textLine.update(dt);
             this.textLine.position = new geom.Point(this.position.x, this.position.y + this.contentSize.height);
+            this.textLine.anchorPoint = new geom.Point(0.5,0.5);
             
             if (this.textLine.delay < this.textLine.timePassed) {
                 if (this.textLine.parent) {

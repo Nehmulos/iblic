@@ -11,7 +11,7 @@ function Crate() {
         file: "/gfx/crate.png",
         rect: new geom.Rect(0,0,32, 32)
     });
-    this.sprite.anchorPoint = new geom.Point(0,0);
+    this.sprite.anchorPoint = new geom.Point(0.5,0.5);
     this.contentSize = this.sprite.contentSize;
     this.addChild({child:this.sprite});
 }

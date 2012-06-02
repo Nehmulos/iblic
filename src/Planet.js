@@ -9,7 +9,7 @@ function Planet() {
         file: "/gfx/planet.png",
         rect: new geom.Rect(0,0,256, 256)
     });
-    this.sprite.anchorPoint = new geom.Point(0,0);
+    this.sprite.anchorPoint = new geom.Point(0.5,0.5);
     this.contentSize = this.sprite.contentSize;
     this.addChild({child:this.sprite});
 }

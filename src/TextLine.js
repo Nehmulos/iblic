@@ -12,6 +12,7 @@ function TextLine(opts) {
     
     
     var background = new TextLineBackground()
+    background.anchorPoint = new geom.Point(0.5,0.5);
     background.position = new geom.Point(this.position.x - 2.5, this.position.y - 2.5);
     background.contentSize = new geom.Size(this.contentSize.width + 10, 
                                            this.contentSize.height + 10);

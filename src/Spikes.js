@@ -10,7 +10,7 @@ function Spikes() {
         file: "/gfx/spikes.png",
         rect: new geom.Rect(0,0,64, 43)
     });
-    this.sprite.anchorPoint = new geom.Point(0,0);
+    this.sprite.anchorPoint = new geom.Point(0.5,0.5);
     this.contentSize = this.sprite.contentSize;
     this.addChild({child:this.sprite});
 }
