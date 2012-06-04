@@ -109,13 +109,15 @@ Ph0toshop.inherit(Map, {
                     // oh no the horror
                     game.player.say([new TextLine({string: 'Hi, do you have icecream?',delay:3, 
                         onEndedCallback:function() {
-                            barman.say([new TextLine({string: "We're a photomarket! we develop your photos!",delay:4}),
+                            barman.say([new TextLine({string: "We're a photomarket! we develop your photos!",delay:4,
+                                onEndedCallback:function() {
+                                    game.engine.playerProfile.setDecision("ps.talkedWithShopkeeper1", true);
+                                }}),
                                         new TextLine({string: "but I think that I sill have some outside.",delay:4}),
                                         new TextLine({string: "If you find it you can keep it.",delay:3}),
                                         new TextLine({string: "and that's cutting me own throat.",delay:3,
                                 onEndedCallback:function() {
                                     game.player.say([new TextLine({string: 'Uhm... thanks!',delay:2})]);
-                                    game.engine.playerProfile.setDecision("ps.talkedWithShopkeeper1", true);
                                 }                        
                             })]);                
                         }
