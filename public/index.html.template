@@ -45,12 +45,11 @@
         use the keyboard to move through the world
         <br/>
         <ul>
-            <li><b>D</b> - Go right</li>
-            <li><b>A</b> - Go left</li>
-            <li><b>W</b> - Jump</li>
+            <li><b>W / A / D</b> - Jump / Go Left / Go Right</li>
             <li><b>S</b> - Enter building / Talk / Action</li>
             <li><b>Enter</b> - Restart map</li>
             <li><b>N</b> - Enter player-name</li>
+            <li><b>F5</b> - Restart the map when the game is stuck</li>
             <li><b>Backspace</b> - Delete savegame</li>
         </ul>
         <hr/>
