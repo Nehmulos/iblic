@@ -94,9 +94,11 @@ GameEngine.inherit(Layer, {
         if (event.keyCode == 78) {
             var name = this.playerProfile.name;
             name = prompt("Enter your name", name);
-            name = name.replace(/^\s*/, "").replace(/\s*$/, "");
-            if (name != null && name != "") {
-                this.playerProfile.name = name;
+            if (name != null) {
+                name = name.replace(/^\s*/, "").replace(/\s*$/, "");
+                if (name != "") {
+                    this.playerProfile.name = name;
+                }
             }
         }
     },
