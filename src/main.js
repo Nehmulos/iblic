@@ -8,14 +8,32 @@ var scene;
 /**
  * Entry point for the application
  */
-function main () {
+$(function() {
     // Initialise application
 
     // Get director singleton
-    var director = Director.sharedDirector
+    var director = cc.Director.sharedDirector
+    director.backgroundColor = "rgb(200,200,200)"
+    director.attachInView(document.getElementById('cocos2d-demo'))
+    director.displayFPS = true
+
+    
+    // I modified lib/cocos2d-beta2.js to make this work!
+    // this function does not work with the official release
+    function registerResource(path, mimetype, alias) {
+        alias = alias || path;
+        cc.jah.resources[alias] = {data: path, mimetype: mimetype, remote:true};
+        director.preloader().addToQueue(path);
+    };
+    
+    // here you can add a block of resources
+    // they will be loaded with the loadingscreen before your game starts
+    registerResource("gfx/player.png", "image/png");
+    registerResource("gfx/planet.png", "image/png");
+
 
     // Wait for the director to finish preloading our assets
-    events.addListener(director, 'ready', function (director) {
+    cc.addListener(director, 'ready', function (director) {
         // Create a scene and layer
         var layer = new GameEngine()
         GameEngine.instance = layer;
@@ -38,12 +56,14 @@ function main () {
 
     // Preload our assets
     director.runPreloadScene()
-}
+});
 
 
+/*
 window.getResourcePath = function(cocosPath) {
     return __jah__.assetURL + cocosPath;
 }
+*/
 
 window.rrandom = function(minValue, maxValue) {
     return (maxValue - minValue) * Math.random() + minValue;

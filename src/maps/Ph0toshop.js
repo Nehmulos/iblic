@@ -18,65 +18,65 @@ Ph0toshop.inherit(Map, {
         this.game.world.SetGravity(new b2Vec2(0,-40));
     /*
         var planet = new Planet();
-        planet.position = new geom.Point(s.width/2, s.height/2);
+        planet.position = new cc.Point(s.width/2, s.height/2);
         planet.createPhysics(game.world, {isStatic:true, shapeType:"circle"});
         game.planet = planet;
         game.addChild({child:planet});
     */
         var background = new cc.Sprite({
             file:"/gfx/insideph0toshop.png",
-            rect: new geom.Rect(0,0, 592, 210)
+            rect: new cc.Rect(0,0, 592, 210)
         });
-        background.anchorPoint = new geom.Point(0,1);
-        background.position = new geom.Point(0, s.height/2 + background.contentSize.height/2);
+        background.anchorPoint = new cc.Point(0,1);
+        background.position = new cc.Point(0, s.height/2 + background.contentSize.height/2);
         game.addChild({child:background});
         
         var bar = new cc.Sprite({
             file:"/gfx/insideph0toshopbar.png",
-            rect: new geom.Rect(0,0, 149, 56)
+            rect: new cc.Rect(0,0, 149, 56)
         });
-        bar.anchorPoint = new geom.Point(0,1);
-        bar.position = new geom.Point(background.position.x + 330, background.position.y - 120);
+        bar.anchorPoint = new cc.Point(0,1);
+        bar.position = new cc.Point(background.position.x + 330, background.position.y - 120);
         bar.zOrder = 1;
         game.addChild({child:bar});
         
-        game.player.position = new geom.Point(62, s.height/2-41);
+        game.player.position = new cc.Point(62, s.height/2-41);
         game.player.rotation = 0;
         game.player.createPhysics(game.world, {fixedRotation:true});
-        game.player.body.SetAngle(geom.degreesToRadians(0));
+        game.player.body.SetAngle(cc.degreesToRadians(0));
         game.player.zOrder = 2;
         game.player.flipX = false;
         game.addChild({child:game.player});
 
         /*
         var crate = new Crate();
-        crate.position = new geom.Point(s.width/4 + (crate.contentSize.width), 0);
+        crate.position = new cc.Point(s.width/4 + (crate.contentSize.width), 0);
         crate.createPhysics(game.world, {});
         game.addChild({child:crate});
         */
         
         var door = new MapPortal({});
-        door.position = new geom.Point(20, s.height/2);
-        door.contentSize = new geom.Size(40,60);
+        door.position = new cc.Point(20, s.height/2);
+        door.contentSize = new cc.Size(40,60);
         door.map = "ParallelWorld1";
         door.createPhysics(game.world, {isSensor:true, isStatic:true});
         
         var ground = new PhysicsNode();
-        ground.position = new geom.Point(background.contentSize.width/2, (s.height/2)-80);
-        ground.createPhysics(game.world, {isStatic:true, boundingBox:new geom.Rect(0,0,background.contentSize.width,10)});
+        ground.position = new cc.Point(background.contentSize.width/2, (s.height/2)-80);
+        ground.createPhysics(game.world, {isStatic:true, boundingBox:new cc.Rect(0,0,background.contentSize.width,10)});
         ground.isGround = true;
         
         var leftWall = new PhysicsNode();
-        leftWall.position = new geom.Point(0, s.height/2);
-        leftWall.createPhysics(game.world, {isStatic:true, boundingBox:new geom.Rect(0,0,30,s.height)});
+        leftWall.position = new cc.Point(0, s.height/2);
+        leftWall.createPhysics(game.world, {isStatic:true, boundingBox:new cc.Rect(0,0,30,s.height)});
         
         var rightWall = new PhysicsNode();
-        rightWall.position = new geom.Point(background.contentSize.width-35, s.height/2);
-        rightWall.createPhysics(game.world, {isStatic:true, boundingBox:new geom.Rect(0,0,30,s.height)});
+        rightWall.position = new cc.Point(background.contentSize.width-35, s.height/2);
+        rightWall.createPhysics(game.world, {isStatic:true, boundingBox:new cc.Rect(0,0,30,s.height)});
         
         var barman = new Person();
         barman.sprite.flipX = true;
-        barman.position = new geom.Point(bar.position.x + (bar.contentSize.width/4)*3, bar.position.y);
+        barman.position = new cc.Point(bar.position.x + (bar.contentSize.width/4)*3, bar.position.y);
         game.addChild({child:barman});
         barman.createPhysics(game.world, {isStatic:true, isSensor:true});
         barman.textColor = "lightgreen";
@@ -84,7 +84,7 @@ Ph0toshop.inherit(Map, {
         
         var talkRegion = new UseTrigger();
         talkRegion.position = bar.position;
-        talkRegion.contentSize = new geom.Size(bar.contentSize.width + 80,300);
+        talkRegion.contentSize = new cc.Size(bar.contentSize.width + 80,300);
         talkRegion.createPhysics(game.world, {isSensor:true, isStatic:true});
         talkRegion.onUseCallback = function() {
             

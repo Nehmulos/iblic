@@ -75,19 +75,19 @@ Credits.inherit(Map, {
         
         var yOffset = 0;
         for (key in this.lines) {
-            this.lines[key].position = new geom.Point(s.width/2, s.height - this.lines[key].contentSize.height/2 - yOffset);
+            this.lines[key].position = new cc.Point(s.width/2, s.height - this.lines[key].contentSize.height/2 - yOffset);
             yOffset += this.lines[key].contentSize.height + 20;
             this.node.addChild({child:this.lines[key]});
         }
         
         this.node.contentSize.height = yOffset;
         
-        this.node.position = new geom.Point(this.node.position.x, -s.height + this.lines[0].contentSize.height/2);
+        this.node.position = new cc.Point(this.node.position.x, -s.height + this.lines[0].contentSize.height/2);
         
         // animation
         var seq = new cc.Sequence({ actions:[
             new cc.MoveTo({
-                position: new geom.Point(this.node.position.x, s.height + this.node.contentSize.height),
+                position: new cc.Point(this.node.position.x, s.height + this.node.contentSize.height),
                 duration: 155
             }),
         ]});

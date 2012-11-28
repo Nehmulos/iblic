@@ -1,6 +1,6 @@
 function Person() {
     Person.superclass.constructor.call(this)
-    var texture = new cc.Texture2D({ file: "/gfx/player.png" });
+    var texture = new cc.Texture2D({ file: "gfx/player.png" });
 
     var animFrames = [ new cc.SpriteFrame({ texture: texture, rect: new cc.Rect(32 * 0, 64 * 0, 32, 64) })
                      , new cc.SpriteFrame({ texture: texture, rect: new cc.Rect(32 * 1, 64 * 0, 32, 64) })

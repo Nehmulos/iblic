@@ -20,14 +20,14 @@ ParallelWorld1.inherit(Map, {
         var s = cc.Director.sharedDirector.winSize
     
         var planet = new Planet();
-        planet.position = new geom.Point(s.width/2, s.height/2);
+        planet.position = new cc.Point(s.width/2, s.height/2);
         planet.createPhysics(game.world, {isStatic:true, shapeType:"circle"});
         game.planet = planet;
         game.addChild({child:planet});
         
         for (var i=0; i < 1; ++i) {
             var crate = new Crate();
-            crate.position = new geom.Point(s.width/4 + (crate.contentSize.width*(i+1)), 0);
+            crate.position = new cc.Point(s.width/4 + (crate.contentSize.width*(i+1)), 0);
             crate.createPhysics(game.world, {});
             game.addChild({child:crate});
         }
@@ -36,17 +36,17 @@ ParallelWorld1.inherit(Map, {
         
             var ph0toshop = new cc.Sprite({
                 file: "/gfx/ph0toshop.png",
-                rect: new geom.Rect(0,0, 188, 149)
+                rect: new cc.Rect(0,0, 188, 149)
             });
-            ph0toshop.position = new geom.Point(s.width/2, s.height/2);
+            ph0toshop.position = new cc.Point(s.width/2, s.height/2);
             ph0toshop.zOrder = -1;
             ph0toshop.rotation = 180;
             
             if (fadeType === "instant") {
-                ph0toshop.position = new geom.Point(s.width/2, s.height/2 - 165);
+                ph0toshop.position = new cc.Point(s.width/2, s.height/2 - 165);
             } else {
                 var moveAction = new cc.MoveTo({ 
-                    position: new geom.Point(s.width/2, s.height/2 - 165),
+                    position: new cc.Point(s.width/2, s.height/2 - 165),
                     duration: 2
                 })
             
@@ -57,8 +57,8 @@ ParallelWorld1.inherit(Map, {
             var cbs = new MapPortal({
             
             });
-            cbs.position = new geom.Point(s.width/2, s.height/2 - 128);
-            cbs.contentSize = new geom.Size(20,20);
+            cbs.position = new cc.Point(s.width/2, s.height/2 - 128);
+            cbs.contentSize = new cc.Size(20,20);
             cbs.map = "Ph0toshop";
             cbs.createPhysics(game.world, {isSensor:true, isStatic:true});
             cbs.playerTouchCallback = function(player) {
@@ -70,7 +70,7 @@ ParallelWorld1.inherit(Map, {
         if (!game.engine.playerProfile.getDecision("pw1.dizzyEnter")) {
             game.engine.playerProfile.setDecision("pw1.dizzyEnter", true);
             
-            game.player.position = new geom.Point(s.width/2, s.height);
+            game.player.position = new cc.Point(s.width/2, s.height);
             game.player.rotation = 0;
             
             game.player.say([new TextLine({string: 'WOW, what happend!?!', delay:2}),
@@ -80,11 +80,11 @@ ParallelWorld1.inherit(Map, {
             ]);
         } else {
             spawnPh0toshop("instant");
-            game.player.position = new geom.Point(s.width/2 + 40, s.height/2 - 165);
+            game.player.position = new cc.Point(s.width/2 + 40, s.height/2 - 165);
             game.player.rotation = 160;
             
             var cat = new Cat();
-            cat.position = new geom.Point(s.width/2 + 90, s.height/2 - 140);
+            cat.position = new cc.Point(s.width/2 + 90, s.height/2 - 140);
             cat.createPhysics(game.world, {fixedRotation:true});
             cat.textColor = "yellow";
             cat.game = game;
@@ -94,13 +94,13 @@ ParallelWorld1.inherit(Map, {
             
             if (game.engine.playerProfile.getDecision("ps.talkedWithShopkeeper1")) {
                 var ironbar = new Ironbar();
-                ironbar.position = new geom.Point(s.width/2, s.height-60);
+                ironbar.position = new cc.Point(s.width/2, s.height-60);
                 ironbar.createPhysics(game.world, {isStatic:true});
                 ironbar.isGround = false;
                 game.addChild({child:ironbar});
                 
                 var ice = new IceCream();
-                ice.position = new geom.Point(s.width/2, s.height);
+                ice.position = new cc.Point(s.width/2, s.height);
                 ice.createPhysics(game.world, {});
                 ice.map = "Credits";
                 ice.eatDelay = 5;
@@ -110,22 +110,22 @@ ParallelWorld1.inherit(Map, {
                     self.ufoTime = true;
                     var ufo = new cc.Sprite({
                         file: "/gfx/ufo.png",
-                        rect: new geom.Rect(0,0, 128, 88)
+                        rect: new cc.Rect(0,0, 128, 88)
                     });
-                    ufo.position = new geom.Point(0 - ufo.contentSize.width/2, s.height - ufo.contentSize.height/2);
+                    ufo.position = new cc.Point(0 - ufo.contentSize.width/2, s.height - ufo.contentSize.height/2);
                     ufo.zOrder = 10;
                     
                     var seq = new cc.Sequence({ actions:[
                         new cc.MoveTo({
-                            position: new geom.Point(s.width/2, ufo.position.y),
+                            position: new cc.Point(s.width/2, ufo.position.y),
                             duration: 1.5
                         }),
                         new cc.MoveTo({
-                            position: new geom.Point(s.width/2, ufo.position.y),
+                            position: new cc.Point(s.width/2, ufo.position.y),
                             duration: 2
                         }),
                         new cc.MoveTo({
-                            position: new geom.Point(s.width+ ufo.contentSize.width, ufo.position.y),
+                            position: new cc.Point(s.width+ ufo.contentSize.width, ufo.position.y),
                             duration: 1.5
                         }),
                     ]});

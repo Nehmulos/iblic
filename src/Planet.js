@@ -1,7 +1,7 @@
 function Planet() {
     Planet.superclass.constructor.call(this)
     this.sprite = new cc.Sprite({
-        file: "/gfx/planet.png",
+        file: "gfx/planet.png",
         rect: new cc.Rect(0,0,256, 256)
     });
     this.sprite.anchorPoint = new cc.Point(0.5,0.5);

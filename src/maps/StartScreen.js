@@ -16,18 +16,18 @@ StartScreen.inherit(Map, {
         var s = cc.Director.sharedDirector.winSize
     
         var planet = new Planet();
-        planet.position = new geom.Point(s.width/2, s.height/2);
+        planet.position = new cc.Point(s.width/2, s.height/2);
         planet.createPhysics(game.world, {isStatic:true, shapeType:"circle"});
         game.planet = planet;
         game.addChild({child:planet});
         
-        game.player.position = new geom.Point(s.width/2, s.height);
+        game.player.position = new cc.Point(s.width/2, s.height);
         game.player.createPhysics(game.world, {fixedRotation:true});
         game.addChild({child:game.player});
         /*
         for (var i=0; i < 1; ++i) {
             var crate = new Crate();
-            crate.position = new geom.Point(s.width/4 + (crate.contentSize.width*(i+1)), 0);
+            crate.position = new cc.Point(s.width/4 + (crate.contentSize.width*(i+1)), 0);
             crate.createPhysics(game.world, {});
             game.addChild({child:crate});
         }
@@ -37,7 +37,7 @@ StartScreen.inherit(Map, {
             var s = cc.Director.sharedDirector.winSize
         
             var ice = new IceCream();
-            ice.position = new geom.Point(s.width/2, 0);
+            ice.position = new cc.Point(s.width/2, 0);
             ice.rotation = 180;
             ice.createPhysics(game.world, {shapeType:"circle"});
             ice.map = "Icemap2";
@@ -45,14 +45,14 @@ StartScreen.inherit(Map, {
             
             var freeSign = new cc.Sprite({
                 file: "/gfx/freesign.png",
-                rect: new geom.Rect(0,0, 213, 151)
+                rect: new cc.Rect(0,0, 213, 151)
             });
-            freeSign.position = new geom.Point(s.width/2, s.height/2);
+            freeSign.position = new cc.Point(s.width/2, s.height/2);
             freeSign.zOrder = -1;
             freeSign.rotation = 220;
             
             var moveAction = new cc.MoveTo({ 
-                position: new geom.Point(s.width/2 - 128, s.height/2 - 128),
+                position: new cc.Point(s.width/2 - 128, s.height/2 - 128),
                 duration: 2
             })
             
@@ -60,14 +60,14 @@ StartScreen.inherit(Map, {
                 console.log("callback");
                 var credits = new cc.Sprite({
                     file: "/gfx/credits.png",
-                    rect: new geom.Rect(0,0, 133, 45)
+                    rect: new cc.Rect(0,0, 133, 45)
                 });
-                credits.anchorPoint = new geom.Point(1,1);
-                credits.position = new geom.Point(s.width, 0);
+                credits.anchorPoint = new cc.Point(1,1);
+                credits.position = new cc.Point(s.width, 0);
                 credits.zOrder = 10;
                 
                 var moveAction = new cc.MoveTo({ 
-                    position: new geom.Point(s.width, 45),
+                    position: new cc.Point(s.width, 45),
                     duration: 2
                 })
                 
