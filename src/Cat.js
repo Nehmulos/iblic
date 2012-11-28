@@ -2,7 +2,7 @@ function Cat() {
     Cat.superclass.constructor.call(this);
     
     this.removeChild(this.sprite);
-    var texture = new cc.Texture2D({ file: "/gfx/cat.png" });
+    var texture = new cc.Texture2D({ file: "gfx/cat.png" });
 
     var animFrames = [ new cc.SpriteFrame({ texture: texture, rect: new cc.Rect(32 * 0, 32 * 0, 32, 32) })
                      , new cc.SpriteFrame({ texture: texture, rect: new cc.Rect(32 * 1, 32 * 0, 32, 32) })

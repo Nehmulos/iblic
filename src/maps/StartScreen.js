@@ -44,7 +44,7 @@ StartScreen.inherit(Map, {
             game.addChild({child:ice});
             
             var freeSign = new cc.Sprite({
-                file: "/gfx/freesign.png",
+                file: "gfx/freesign.png",
                 rect: new cc.Rect(0,0, 213, 151)
             });
             freeSign.position = new cc.Point(s.width/2, s.height/2);
@@ -59,7 +59,7 @@ StartScreen.inherit(Map, {
             var showCredits = function() {
                 console.log("callback");
                 var credits = new cc.Sprite({
-                    file: "/gfx/credits.png",
+                    file: "gfx/credits.png",
                     rect: new cc.Rect(0,0, 133, 45)
                 });
                 credits.anchorPoint = new cc.Point(1,1);

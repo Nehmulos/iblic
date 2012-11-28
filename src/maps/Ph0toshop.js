@@ -24,7 +24,7 @@ Ph0toshop.inherit(Map, {
         game.addChild({child:planet});
     */
         var background = new cc.Sprite({
-            file:"/gfx/insideph0toshop.png",
+            file:"gfx/insideph0toshop.png",
             rect: new cc.Rect(0,0, 592, 210)
         });
         background.anchorPoint = new cc.Point(0,1);
@@ -32,7 +32,7 @@ Ph0toshop.inherit(Map, {
         game.addChild({child:background});
         
         var bar = new cc.Sprite({
-            file:"/gfx/insideph0toshopbar.png",
+            file:"gfx/insideph0toshopbar.png",
             rect: new cc.Rect(0,0, 149, 56)
         });
         bar.anchorPoint = new cc.Point(0,1);

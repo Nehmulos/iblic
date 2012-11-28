@@ -35,7 +35,7 @@ ParallelWorld1.inherit(Map, {
         
         
             var ph0toshop = new cc.Sprite({
-                file: "/gfx/ph0toshop.png",
+                file: "gfx/ph0toshop.png",
                 rect: new cc.Rect(0,0, 188, 149)
             });
             ph0toshop.position = new cc.Point(s.width/2, s.height/2);
@@ -109,7 +109,7 @@ ParallelWorld1.inherit(Map, {
                     console.log("ufo time!");
                     self.ufoTime = true;
                     var ufo = new cc.Sprite({
-                        file: "/gfx/ufo.png",
+                        file: "gfx/ufo.png",
                         rect: new cc.Rect(0,0, 128, 88)
                     });
                     ufo.position = new cc.Point(0 - ufo.contentSize.width/2, s.height - ufo.contentSize.height/2);

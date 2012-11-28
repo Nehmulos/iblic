@@ -51,7 +51,7 @@ Icemap2.inherit(Map, {
         game.addChild({child:rightSpikes});
         
         var deadlySign = new cc.Sprite({
-            file: "/gfx/deadlyspikessign.png",
+            file: "gfx/deadlyspikessign.png",
             rect: new cc.Rect(0,0, 72, 71)
         });
         deadlySign.position = new cc.Point(s.width/2, s.height/2);
@@ -84,7 +84,7 @@ Icemap2.inherit(Map, {
     showCredits: function() {
         var s = cc.Director.sharedDirector.winSize
         var credits = new cc.Sprite({
-            file: "/gfx/credits.png",
+            file: "gfx/credits.png",
             rect: new cc.Rect(0,0, 133, 45)
         });
         credits.anchorPoint = new cc.Point(1,1);

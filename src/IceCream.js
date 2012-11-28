@@ -1,7 +1,7 @@
 function IceCream() {
     IceCream.superclass.constructor.call(this)
     this.sprite = new cc.Sprite({
-        file: "/gfx/icecream.png",
+        file: "gfx/icecream.png",
         rect: new cc.Rect(0,0,64, 64)
     });
     this.sprite.anchorPoint = new cc.Point(0.5,0.5);
