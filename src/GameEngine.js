@@ -1,24 +1,8 @@
-// Pull in the modules we're going to use
-var cocos  = require('cocos2d')   // Import the cocos2d module
-  , nodes  = cocos.nodes          // Convenient access to 'nodes'
-  , events = require('events')    // Import the events module
-  , geo    = require('geometry')  // Import the geometry module
-  , ccp    = geo.ccp              // Short hand to create points
-  , PhysicsNode = require("/PhysicsNode")
-  , PlayerProfile = require("/PlayerProfile")
-  , Planet = require("/Planet")
-  , box2d  = require("box2d")
-  , Player = require("/Player")
-  , Crate  = require("/Crate")
-  , Input = require("/Input")
-  , PlanetGame = require("/PlanetGame")
-
-
 // Convenient access to some constructors
-var Layer    = nodes.Layer
-  , Scene    = nodes.Scene
-  , Label    = nodes.Label
-  , Director = cocos.Director
+var Layer    = cc.Layer
+  , Scene    = cc.Scene
+  , Label    = cc.Label
+  , Director = cc.Director
 
 /**
  * @class Initial application layer
@@ -107,5 +91,3 @@ GameEngine.inherit(Layer, {
         Input.instance.keysDown[event.keyCode] = false;
     }
 });
-
-module.exports = GameEngine;

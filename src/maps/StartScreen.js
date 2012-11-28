@@ -1,15 +1,3 @@
-var cocos = require("cocos2d"),
-    geom  = require("geometry"),
-    box2d = require("box2d"),
-    PhysicsNode = require("/PhysicsNode"),
-    Input = require("/Input"),
-    TextLine = require("/TextLine"),
-    Map = require("/Map"),
-    Person = require("/Person"),
-    Planet = require("/Planet"),
-    Crate  = require("/Crate"),
-    IceCream  = require("/IceCream");
-
 function StartScreen() {
     StartScreen.superclass.constructor.call(this)
     
@@ -25,7 +13,7 @@ StartScreen.inherit(Map, {
         
         StartScreen.superclass.constructor.call(this, game)
         // Get size of canvas
-        var s = cocos.Director.sharedDirector.winSize
+        var s = cc.Director.sharedDirector.winSize
     
         var planet = new Planet();
         planet.position = new geom.Point(s.width/2, s.height/2);
@@ -46,7 +34,7 @@ StartScreen.inherit(Map, {
         */
         var self = this;
         var spawnIceCream = function() {
-            var s = cocos.Director.sharedDirector.winSize
+            var s = cc.Director.sharedDirector.winSize
         
             var ice = new IceCream();
             ice.position = new geom.Point(s.width/2, 0);
@@ -55,7 +43,7 @@ StartScreen.inherit(Map, {
             ice.map = "Icemap2";
             game.addChild({child:ice});
             
-            var freeSign = new cocos.nodes.Sprite({
+            var freeSign = new cc.Sprite({
                 file: "/gfx/freesign.png",
                 rect: new geom.Rect(0,0, 213, 151)
             });
@@ -63,14 +51,14 @@ StartScreen.inherit(Map, {
             freeSign.zOrder = -1;
             freeSign.rotation = 220;
             
-            var moveAction = new cocos.actions.MoveTo({ 
+            var moveAction = new cc.MoveTo({ 
                 position: new geom.Point(s.width/2 - 128, s.height/2 - 128),
                 duration: 2
             })
             
             var showCredits = function() {
                 console.log("callback");
-                var credits = new cocos.nodes.Sprite({
+                var credits = new cc.Sprite({
                     file: "/gfx/credits.png",
                     rect: new geom.Rect(0,0, 133, 45)
                 });
@@ -78,7 +66,7 @@ StartScreen.inherit(Map, {
                 credits.position = new geom.Point(s.width, 0);
                 credits.zOrder = 10;
                 
-                var moveAction = new cocos.actions.MoveTo({ 
+                var moveAction = new cc.MoveTo({ 
                     position: new geom.Point(s.width, 45),
                     duration: 2
                 })
@@ -87,8 +75,8 @@ StartScreen.inherit(Map, {
                 game.addChild({child:credits});            
             }
             
-            var seq = new cocos.actions.Sequence({ actions: [
-//                new cocos.actions.CallFunc({ target:self, method: "showCredits" }),
+            var seq = new cc.Sequence({ actions: [
+//                new cc.CallFunc({ target:self, method: "showCredits" }),
                 moveAction
             ]});
             
@@ -107,4 +95,3 @@ StartScreen.inherit(Map, {
     },
 });
 
-module.exports = StartScreen;

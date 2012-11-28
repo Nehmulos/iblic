@@ -1,15 +1,3 @@
-var cocos = require("cocos2d"),
-    geom  = require("geometry"),
-    box2d = require("box2d"),
-    PhysicsNode = require("/PhysicsNode"),
-    Planet = require("/Planet"),
-    Player = require("/Player"),
-    Crate  = require("/Crate"),
-    TextLine = require("/TextLine");
-    Maplist = require("/maps/Maplist"),
-    GameEngine = require("/GameEngine"),
-    ContactListener = require("/ContactListener");
-
 function PlanetGame(engine) {
     PlanetGame.superclass.constructor.call(this)
     
@@ -43,14 +31,14 @@ PlanetGame.inherit(PhysicsNode, {
     },
     
     unloadMap: function() {
-        var gravity = new box2d.b2Vec2(0, 0);
-        this.world = new box2d.b2World(gravity, true);
+        var gravity = new b2Vec2(0, 0);
+        this.world = new b2World(gravity, true);
         this.world.SetContactListener(new ContactListener());
         this.removeChildren({cleanup:true});
         this.map = null;
         this.planet = null;
         this.player.reset();
-        cocos.Director.sharedDirector.backgroundColor = "rgb(255,255,255)"
+        cc.Director.sharedDirector.backgroundColor = "rgb(255,255,255)"
     },
 
     update: function(dt) {
@@ -60,4 +48,3 @@ PlanetGame.inherit(PhysicsNode, {
     }
 });
 
-module.exports = PlanetGame;

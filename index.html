@@ -1,6 +1,43 @@
 <!doctype html>
 <html>
     <head>
+        <script src="lib/jquery-1.7.2.min.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="lib/box2d.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="lib/cocos2d-beta2.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+    
+        <script src="src/PhysicsNode.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="src/Person.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="src/UseTrigger.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="src/MapPortal.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        
+        
+        <script src="src/CallbackSensor.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="src/Cat.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="src/ContactListener.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="src/Crate.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="src/GameEngine.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="src/Game.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="src/IceCream.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="src/Input.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="src/Ironbar.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="src/Map.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="src/PlanetGame.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="src/Planet.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="src/Player.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="src/PlayerProfile.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="src/Spikes.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="src/TextLine.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+
+        <script src="src/maps/Credits.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="src/maps/Icemap2.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="src/maps/Icemap3.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="src/maps/ParallelWorld1.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="src/maps/Ph0toshop.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="src/maps/StartScreen.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        <script src="src/maps/Maplist.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+        
+        <script src="src/main.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+    
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>Ld23</title>
         <style type="text/css" media="screen">
@@ -35,36 +72,6 @@
                 user-select: none;
             }
         </style>
-        <script src="CallbackSensor.js" type="text/javascript" language="javascript" charset="utf-8" />
-        <script src="Cat.js" type="text/javascript" language="javascript" charset="utf-8" />
-        <script src="ContactListener.js" type="text/javascript" language="javascript" charset="utf-8" />
-        <script src="Crate.js" type="text/javascript" language="javascript" charset="utf-8" />
-        <script src="GameEngine.js" type="text/javascript" language="javascript" charset="utf-8" />
-        <script src="Game.js" type="text/javascript" language="javascript" charset="utf-8" />
-        <script src="IceCream.js" type="text/javascript" language="javascript" charset="utf-8" />
-        <script src="Input.js" type="text/javascript" language="javascript" charset="utf-8" />
-        <script src="Ironbar.js" type="text/javascript" language="javascript" charset="utf-8" />
-        <script src="Map.js" type="text/javascript" language="javascript" charset="utf-8" />
-        <script src="MapPortal.js" type="text/javascript" language="javascript" charset="utf-8" />
-        <script src="Person.js" type="text/javascript" language="javascript" charset="utf-8" />
-        <script src="PhysicsNode.js" type="text/javascript" language="javascript" charset="utf-8" />
-        <script src="PlanetGame.js" type="text/javascript" language="javascript" charset="utf-8" />
-        <script src="Planet.js" type="text/javascript" language="javascript" charset="utf-8" />
-        <script src="Player.js" type="text/javascript" language="javascript" charset="utf-8" />
-        <script src="PlayerProfile.js" type="text/javascript" language="javascript" charset="utf-8" />
-        <script src="Spikes.js" type="text/javascript" language="javascript" charset="utf-8" />
-        <script src="TextLine.js" type="text/javascript" language="javascript" charset="utf-8" />
-        <script src="UseTrigger.js" type="text/javascript" language="javascript" charset="utf-8" />
-
-        <script src="maps/Maplist.js" type="text/javascript" language="javascript" charset="utf-8" />
-        <script src="maps/Credits.js" type="text/javascript" language="javascript" charset="utf-8" />
-        <script src="maps/Icemap2.js" type="text/javascript" language="javascript" charset="utf-8" />
-        <script src="maps/Icemap3.js" type="text/javascript" language="javascript" charset="utf-8" />
-        <script src="maps/ParallelWorld1.js" type="text/javascript" language="javascript" charset="utf-8" />
-        <script src="maps/Ph0toshop.js" type="text/javascript" language="javascript" charset="utf-8" />
-        <script src="maps/StartScreen.js" type="text/javascript" language="javascript" charset="utf-8" />
-        
-        <script src="main.js" type="text/javascript" language="javascript" charset="utf-8" />
     </head>
     <body>
         <h1>Ld23</h1>

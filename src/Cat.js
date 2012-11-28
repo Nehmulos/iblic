@@ -1,39 +1,31 @@
-var cocos = require("cocos2d"),
-    geom  = require("geometry"),
-    box2d = require("box2d"),
-    PhysicsNode = require("/PhysicsNode"),
-    Input = require("/Input"),
-    TextLine = require("/TextLine"),
-    Person = require("/Person");
-
 function Cat() {
     Cat.superclass.constructor.call(this);
     
     this.removeChild(this.sprite);
-    var texture = new cocos.Texture2D({ file: "/gfx/cat.png" });
+    var texture = new cc.Texture2D({ file: "/gfx/cat.png" });
 
-    var animFrames = [ new cocos.SpriteFrame({ texture: texture, rect: new geom.Rect(32 * 0, 32 * 0, 32, 32) })
-                     , new cocos.SpriteFrame({ texture: texture, rect: new geom.Rect(32 * 1, 32 * 0, 32, 32) })
-                     , new cocos.SpriteFrame({ texture: texture, rect: new geom.Rect(32 * 2, 32 * 0, 32, 32) })
-                     , new cocos.SpriteFrame({ texture: texture, rect: new geom.Rect(32 * 1, 32 * 0, 32, 32) })
-                     , new cocos.SpriteFrame({ texture: texture, rect: new geom.Rect(32 * 0, 32 * 0, 32, 32) })
+    var animFrames = [ new cc.SpriteFrame({ texture: texture, rect: new cc.Rect(32 * 0, 32 * 0, 32, 32) })
+                     , new cc.SpriteFrame({ texture: texture, rect: new cc.Rect(32 * 1, 32 * 0, 32, 32) })
+                     , new cc.SpriteFrame({ texture: texture, rect: new cc.Rect(32 * 2, 32 * 0, 32, 32) })
+                     , new cc.SpriteFrame({ texture: texture, rect: new cc.Rect(32 * 1, 32 * 0, 32, 32) })
+                     , new cc.SpriteFrame({ texture: texture, rect: new cc.Rect(32 * 0, 32 * 0, 32, 32) })
     ];
 
-    this.sprite = new cocos.nodes.Sprite({
+    this.sprite = new cc.Sprite({
         texture:texture,
         rect: animFrames[0].rect
     });
     
-    var animation = new cocos.Animation({ frames: animFrames, delay: 0.4 })
-      , animate   = new cocos.actions.Animate({ animation: animation, restoreOriginalFrame: false });
-    this.idleSeq  = new cocos.actions.Sequence({ actions: [animate] });
+    var animation = new cc.Animation({ frames: animFrames, delay: 0.4 })
+      , animate   = new cc.Animate({ animation: animation, restoreOriginalFrame: false });
+    this.idleSeq  = new cc.Sequence({ actions: [animate] });
 
-    this.sprite.anchorPoint = new geom.Point(0.5,0.5);
+    this.sprite.anchorPoint = new cc.Point(0.5,0.5);
     this.contentSize = this.sprite.contentSize;
     this.addChild({child:this.sprite});
     
     this.sprite.stopAllActions();
-    this.sprite.runAction(new cocos.actions.RepeatForever(this.idleSeq));
+    this.sprite.runAction(new cc.RepeatForever(this.idleSeq));
 }
 
 Cat.inherit(Person, {
@@ -75,7 +67,7 @@ Cat.inherit(Person, {
     },
     
     createPhysics:function(world, opts) {
-        opts.boundingBox = opts.boundingBox || new geom.Rect(0,0, 24,24);
+        opts.boundingBox = opts.boundingBox || new cc.Rect(0,0, 24,24);
         Cat.superclass.createPhysics.call(this, world, opts);
     },
     
@@ -83,5 +75,3 @@ Cat.inherit(Person, {
         Cat.superclass.update.call(this, dt);
     },
 });
-
-module.exports = Cat;

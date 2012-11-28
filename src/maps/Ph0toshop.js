@@ -1,17 +1,3 @@
-var cocos = require("cocos2d"),
-    geom  = require("geometry"),
-    box2d = require("box2d"),
-    PhysicsNode = require("/PhysicsNode"),
-    Input = require("/Input"),
-    TextLine = require("/TextLine"),
-    Map = require("/Map"),
-    Person = require("/Person"),
-    Planet = require("/Planet"),
-    Crate  = require("/Crate"),
-    IceCream  = require("/IceCream"),
-    MapPortal = require("/MapPortal"),
-    UseTrigger = require("/UseTrigger");
-
 function Ph0toshop() {
     Ph0toshop.superclass.constructor.call(this)
     
@@ -27,9 +13,9 @@ Ph0toshop.inherit(Map, {
         this.game = game;
         Ph0toshop.superclass.constructor.call(this, game)
         // Get size of canvas
-        var s = cocos.Director.sharedDirector.winSize
+        var s = cc.Director.sharedDirector.winSize
         
-        this.game.world.SetGravity(new box2d.b2Vec2(0,-40));
+        this.game.world.SetGravity(new b2Vec2(0,-40));
     /*
         var planet = new Planet();
         planet.position = new geom.Point(s.width/2, s.height/2);
@@ -37,7 +23,7 @@ Ph0toshop.inherit(Map, {
         game.planet = planet;
         game.addChild({child:planet});
     */
-        var background = new cocos.nodes.Sprite({
+        var background = new cc.Sprite({
             file:"/gfx/insideph0toshop.png",
             rect: new geom.Rect(0,0, 592, 210)
         });
@@ -45,7 +31,7 @@ Ph0toshop.inherit(Map, {
         background.position = new geom.Point(0, s.height/2 + background.contentSize.height/2);
         game.addChild({child:background});
         
-        var bar = new cocos.nodes.Sprite({
+        var bar = new cc.Sprite({
             file:"/gfx/insideph0toshopbar.png",
             rect: new geom.Rect(0,0, 149, 56)
         });
@@ -134,5 +120,3 @@ Ph0toshop.inherit(Map, {
     update:function(dt) {
     },
 });
-
-module.exports = Ph0toshop;

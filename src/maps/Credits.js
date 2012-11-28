@@ -1,89 +1,77 @@
-var cocos = require("cocos2d"),
-    geom  = require("geometry"),
-    box2d = require("box2d"),
-    PhysicsNode = require("/PhysicsNode"),
-    Input = require("/Input"),
-    TextLine = require("/TextLine"),
-    Map = require("/Map"),
-    Person = require("/Person"),
-    Planet = require("/Planet"),
-    Crate  = require("/Crate"),
-    IceCream  = require("/IceCream");
-
-function StartScreen() {
-    StartScreen.superclass.constructor.call(this)
+function Credits() {
+    Credits.superclass.constructor.call(this)
     
 }
 
-StartScreen.inherit(Map, {
+Credits.inherit(Map, {
     storeAsLastMap: true,
 
     setup: function(game) {
         this.game = game;
-        StartScreen.superclass.constructor.call(this, game)
+        Credits.superclass.constructor.call(this, game)
         // Get size of canvas
-        var s = cocos.Director.sharedDirector.winSize
+        var s = cc.Director.sharedDirector.winSize
         this.middle = s.height/2;
         
-        cocos.Director.sharedDirector.backgroundColor = "rgb(0,0,0)"
+        cc.Director.sharedDirector.backgroundColor = "rgb(0,0,0)"
         
         this.lines = [
-            new cocos.nodes.Label({string: "Our hero has been captured by vicious aliens!", fontSize:24}),
-            new cocos.nodes.Label({string: "Will his endless quest for icecream find an end here?", fontSize:24}),
-            new cocos.nodes.Label({string: "What kind of adventures lure in the insides of the ufo?", fontSize:24}),
-            new cocos.nodes.Label({string: "Why do buildings look bigger from the inside?", fontSize:24}),
-            new cocos.nodes.Label({string: " ", fontSize:0}),
-            new cocos.nodes.Label({string: "When a tree drops in the forest and nobody is around, does it make a sound?", fontSize:18}),
-            new cocos.nodes.Label({string: "If everythings tastes like chicken, what do chickens taste like?", fontSize:18}),
-            new cocos.nodes.Label({string: " ", fontSize:30}),
-            new cocos.nodes.Label({string: " ", fontSize:30}),
-            new cocos.nodes.Label({string: "These and many other questions", fontSize:30}),
-            new cocos.nodes.Label({string: "will be answered in...", fontSize:48}),
-            new cocos.nodes.Label({string: " ", fontSize:30}),
-            new cocos.nodes.Label({string: " ", fontSize:30}),
-            new cocos.nodes.Label({string: "THE NEXT EPISODE", fontSize:62}),
-            new cocos.nodes.Label({string: " ", fontSize:30}),
-            new cocos.nodes.Label({string: " ", fontSize:30}),
-            new cocos.nodes.Label({string: " ", fontSize:30}),
-            new cocos.nodes.Label({string: " ", fontSize:30}),
-            new cocos.nodes.Label({string: "Statistics", fontSize:62}),
-            new cocos.nodes.Label({string: "Icecream eaten: " + game.engine.playerProfile._iceCream, fontSize:24}),
-            new cocos.nodes.Label({string: "Deaths:         " + game.engine.playerProfile._deaths, fontSize:24}),
-            new cocos.nodes.Label({string: "Doors used:     " + game.engine.playerProfile._portalsTaken, fontSize:24}),
-            new cocos.nodes.Label({string: " ", fontSize:30}),
-            new cocos.nodes.Label({string: " ", fontSize:30}),
-            new cocos.nodes.Label({string: " ", fontSize:30}),
-            new cocos.nodes.Label({string: "Credits", fontSize:62}),
-            new cocos.nodes.Label({string: "Code:      Nehmulos", fontSize:24}),
-            new cocos.nodes.Label({string: "Idea:      Nehmulos", fontSize:24}),
-            new cocos.nodes.Label({string: "Graphics:  Nehmulos", fontSize:24}),
-            new cocos.nodes.Label({string: "Sound:     Nehmulos", fontSize:24}),
-            new cocos.nodes.Label({string: " ", fontSize:30}),
-            new cocos.nodes.Label({string: "Thanks to Ryan Williams", fontSize:24}),
-            new cocos.nodes.Label({string: "for cocos2d", fontSize:24}),
-            new cocos.nodes.Label({string: " ", fontSize:30}),
-            new cocos.nodes.Label({string: "Thanks to all the developers of", fontSize:24}),
-            new cocos.nodes.Label({string: "GIMP, gedit, GNU/Linux, Stranded II", fontSize:24}),
-            new cocos.nodes.Label({string: " ", fontSize:30}),
-            new cocos.nodes.Label({string: "and screw everyone who added a bug to fglrx", fontSize:24}),
-            new cocos.nodes.Label({string: " ", fontSize:30}),
-            new cocos.nodes.Label({string: "Created for Ludum Daré #23", fontSize:24}),
-            new cocos.nodes.Label({string: "in 48 hours", fontSize:24}),
-            new cocos.nodes.Label({string: " ", fontSize:30}),
-            new cocos.nodes.Label({string: " ", fontSize:30}),
-            new cocos.nodes.Label({string: "Updates may be released", fontSize:24}),
-            new cocos.nodes.Label({string: "on the 29th April 2012", fontSize:24}),
-            new cocos.nodes.Label({string: "on nehmulos.wordpress.com", fontSize:24}),
-            new cocos.nodes.Label({string: " ", fontSize:30}),
-            new cocos.nodes.Label({string: " ", fontSize:30}),
-            new cocos.nodes.Label({string: "Press backspace to play again", fontSize:24}),
-            new cocos.nodes.Label({string: "(That's the key above 'Return')", fontSize:18}),
-            new cocos.nodes.Label({string: "(That's the key above the right 'shift')", fontSize:18}),
-            new cocos.nodes.Label({string: "(That's the key above the right 'ctrl')", fontSize:18}),
-            new cocos.nodes.Label({string: "(That's the key next to the arrow keys)", fontSize:18})
+            new cc.Label({string: "Our hero has been captured by vicious aliens!", fontSize:24}),
+            new cc.Label({string: "Will his endless quest for icecream find an end here?", fontSize:24}),
+            new cc.Label({string: "What kind of adventures lure in the insides of the ufo?", fontSize:24}),
+            new cc.Label({string: "Why do buildings look bigger from the inside?", fontSize:24}),
+            new cc.Label({string: " ", fontSize:0}),
+            new cc.Label({string: "When a tree drops in the forest and nobody is around, does it make a sound?", fontSize:18}),
+            new cc.Label({string: "If everythings tastes like chicken, what do chickens taste like?", fontSize:18}),
+            new cc.Label({string: " ", fontSize:30}),
+            new cc.Label({string: " ", fontSize:30}),
+            new cc.Label({string: "These and many other questions", fontSize:30}),
+            new cc.Label({string: "will be answered in...", fontSize:48}),
+            new cc.Label({string: " ", fontSize:30}),
+            new cc.Label({string: " ", fontSize:30}),
+            new cc.Label({string: "THE NEXT EPISODE", fontSize:62}),
+            new cc.Label({string: " ", fontSize:30}),
+            new cc.Label({string: " ", fontSize:30}),
+            new cc.Label({string: " ", fontSize:30}),
+            new cc.Label({string: " ", fontSize:30}),
+            new cc.Label({string: "Statistics", fontSize:62}),
+            new cc.Label({string: "Icecream eaten: " + game.engine.playerProfile._iceCream, fontSize:24}),
+            new cc.Label({string: "Deaths:         " + game.engine.playerProfile._deaths, fontSize:24}),
+            new cc.Label({string: "Doors used:     " + game.engine.playerProfile._portalsTaken, fontSize:24}),
+            new cc.Label({string: " ", fontSize:30}),
+            new cc.Label({string: " ", fontSize:30}),
+            new cc.Label({string: " ", fontSize:30}),
+            new cc.Label({string: "Credits", fontSize:62}),
+            new cc.Label({string: "Code:      Nehmulos", fontSize:24}),
+            new cc.Label({string: "Idea:      Nehmulos", fontSize:24}),
+            new cc.Label({string: "Graphics:  Nehmulos", fontSize:24}),
+            new cc.Label({string: "Sound:     Nehmulos", fontSize:24}),
+            new cc.Label({string: " ", fontSize:30}),
+            new cc.Label({string: "Thanks to Ryan Williams", fontSize:24}),
+            new cc.Label({string: "for cocos2d", fontSize:24}),
+            new cc.Label({string: " ", fontSize:30}),
+            new cc.Label({string: "Thanks to all the developers of", fontSize:24}),
+            new cc.Label({string: "GIMP, gedit, GNU/Linux, Stranded II", fontSize:24}),
+            new cc.Label({string: " ", fontSize:30}),
+            new cc.Label({string: "and screw everyone who added a bug to fglrx", fontSize:24}),
+            new cc.Label({string: " ", fontSize:30}),
+            new cc.Label({string: "Created for Ludum Daré #23", fontSize:24}),
+            new cc.Label({string: "in 48 hours", fontSize:24}),
+            new cc.Label({string: " ", fontSize:30}),
+            new cc.Label({string: " ", fontSize:30}),
+            new cc.Label({string: "Updates may be released", fontSize:24}),
+            new cc.Label({string: "on the 29th April 2012", fontSize:24}),
+            new cc.Label({string: "on nehmulos.wordpress.com", fontSize:24}),
+            new cc.Label({string: " ", fontSize:30}),
+            new cc.Label({string: " ", fontSize:30}),
+            new cc.Label({string: "Press backspace to play again", fontSize:24}),
+            new cc.Label({string: "(That's the key above 'Return')", fontSize:18}),
+            new cc.Label({string: "(That's the key above the right 'shift')", fontSize:18}),
+            new cc.Label({string: "(That's the key above the right 'ctrl')", fontSize:18}),
+            new cc.Label({string: "(That's the key next to the arrow keys)", fontSize:18})
         ]
         
-        this.node = new cocos.nodes.Node({});
+        this.node = new cc.Node({});
         
         var yOffset = 0;
         for (key in this.lines) {
@@ -97,8 +85,8 @@ StartScreen.inherit(Map, {
         this.node.position = new geom.Point(this.node.position.x, -s.height + this.lines[0].contentSize.height/2);
         
         // animation
-        var seq = new cocos.actions.Sequence({ actions:[
-            new cocos.actions.MoveTo({
+        var seq = new cc.Sequence({ actions:[
+            new cc.MoveTo({
                 position: new geom.Point(this.node.position.x, s.height + this.node.contentSize.height),
                 duration: 155
             }),
@@ -120,4 +108,3 @@ StartScreen.inherit(Map, {
     },
 });
 
-module.exports = StartScreen;

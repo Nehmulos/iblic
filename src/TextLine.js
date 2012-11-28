@@ -1,7 +1,3 @@
-var cocos = require("cocos2d"),
-    geom  = require("geometry"),
-    box2d = require("box2d");
-
 function TextLine(opts) {
     TextLine.superclass.constructor.call(this,opts)
     var delayMultiplier = 1;
@@ -12,9 +8,9 @@ function TextLine(opts) {
     
     
     var background = new TextLineBackground()
-    background.anchorPoint = new geom.Point(0.5,0.5);
-    background.position = new geom.Point(this.position.x - 2.5, this.position.y - 2.5);
-    background.contentSize = new geom.Size(this.contentSize.width + 10, 
+    background.anchorPoint = new cc.Point(0.5,0.5);
+    background.position = new cc.Point(this.position.x - 2.5, this.position.y - 2.5);
+    background.contentSize = new cc.Size(this.contentSize.width + 10, 
                                            this.contentSize.height + 10);
     background.zOrder = -1
     background.opacity = 200;
@@ -22,7 +18,7 @@ function TextLine(opts) {
     this.addChild({child:background});
 }
 
-TextLine.inherit(cocos.nodes.Label, {
+TextLine.inherit(cc.Label, {
     delay:2,
     timePassed:0,
     onEndedCallback:null,
@@ -37,7 +33,7 @@ function TextLineBackground(opts) {
     TextLineBackground.superclass.constructor.call(this,opts);
 }
 
-TextLineBackground.inherit(cocos.nodes.Node, {
+TextLineBackground.inherit(cc.Node, {
 
     draw: function(context) {
         context.fillStyle = "black";
@@ -48,4 +44,3 @@ TextLineBackground.inherit(cocos.nodes.Node, {
     }
 });
 
-module.exports = TextLine;

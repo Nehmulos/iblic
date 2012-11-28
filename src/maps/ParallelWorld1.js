@@ -1,18 +1,3 @@
-var cocos = require("cocos2d"),
-    geom  = require("geometry"),
-    box2d = require("box2d"),
-    PhysicsNode = require("/PhysicsNode"),
-    Input = require("/Input"),
-    TextLine = require("/TextLine"),
-    Map = require("/Map"),
-    Person = require("/Person"),
-    Planet = require("/Planet"),
-    Crate  = require("/Crate"),
-    IceCream  = require("/IceCream"),
-    MapPortal = require("/MapPortal"),
-    Cat = require("/Cat"),
-    Ironbar = require("/Ironbar");
-
 function ParallelWorld1() {
     ParallelWorld1.superclass.constructor.call(this)
     
@@ -32,7 +17,7 @@ ParallelWorld1.inherit(Map, {
         this.ufoTime = false;
         
         // Get size of canvas
-        var s = cocos.Director.sharedDirector.winSize
+        var s = cc.Director.sharedDirector.winSize
     
         var planet = new Planet();
         planet.position = new geom.Point(s.width/2, s.height/2);
@@ -49,7 +34,7 @@ ParallelWorld1.inherit(Map, {
         var spawnPh0toshop = function(fadeType) {
         
         
-            var ph0toshop = new cocos.nodes.Sprite({
+            var ph0toshop = new cc.Sprite({
                 file: "/gfx/ph0toshop.png",
                 rect: new geom.Rect(0,0, 188, 149)
             });
@@ -60,7 +45,7 @@ ParallelWorld1.inherit(Map, {
             if (fadeType === "instant") {
                 ph0toshop.position = new geom.Point(s.width/2, s.height/2 - 165);
             } else {
-                var moveAction = new cocos.actions.MoveTo({ 
+                var moveAction = new cc.MoveTo({ 
                     position: new geom.Point(s.width/2, s.height/2 - 165),
                     duration: 2
                 })
@@ -123,23 +108,23 @@ ParallelWorld1.inherit(Map, {
                 ice.onEatCallback = function() {
                     console.log("ufo time!");
                     self.ufoTime = true;
-                    var ufo = new cocos.nodes.Sprite({
+                    var ufo = new cc.Sprite({
                         file: "/gfx/ufo.png",
                         rect: new geom.Rect(0,0, 128, 88)
                     });
                     ufo.position = new geom.Point(0 - ufo.contentSize.width/2, s.height - ufo.contentSize.height/2);
                     ufo.zOrder = 10;
                     
-                    var seq = new cocos.actions.Sequence({ actions:[
-                        new cocos.actions.MoveTo({
+                    var seq = new cc.Sequence({ actions:[
+                        new cc.MoveTo({
                             position: new geom.Point(s.width/2, ufo.position.y),
                             duration: 1.5
                         }),
-                        new cocos.actions.MoveTo({
+                        new cc.MoveTo({
                             position: new geom.Point(s.width/2, ufo.position.y),
                             duration: 2
                         }),
-                        new cocos.actions.MoveTo({
+                        new cc.MoveTo({
                             position: new geom.Point(s.width+ ufo.contentSize.width, ufo.position.y),
                             duration: 1.5
                         }),
@@ -148,7 +133,7 @@ ParallelWorld1.inherit(Map, {
                     ufo.runAction(seq);
                     game.addChild({child:ufo});
                     
-                    game.player.body.SetLinearVelocity(new box2d.b2Vec2(0,0));
+                    game.player.body.SetLinearVelocity(new b2Vec2(0,0));
                     game.player.body.ApplyTorque(90);
                     game.player.canMove = false;
                 }
@@ -168,4 +153,3 @@ ParallelWorld1.inherit(Map, {
     },
 });
 
-module.exports = ParallelWorld1;

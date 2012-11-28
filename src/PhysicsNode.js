@@ -1,14 +1,10 @@
-var cocos = require("cocos2d"),
-    geom  = require("geometry"),
-    box2d = require("box2d");
-
 function PhysicsNode() {
     PhysicsNode.superclass.constructor.call(this);
 }
 
 PhysicsNode.physicsScale = 30;
 
-PhysicsNode.inherit(cocos.nodes.Node, {
+PhysicsNode.inherit(cc.Node, {
     destroyed: false,    
     
     update: function() {
@@ -51,40 +47,40 @@ PhysicsNode.inherit(cocos.nodes.Node, {
             args = {}
         }
     
-        var bodyDef = new box2d.b2BodyDef();
+        var bodyDef = new b2BodyDef();
         
         bodyDef.type = args.density != 0.0 && !args.isStatic ? 
-                       box2d.b2Body.b2_dynamicBody :
-                       box2d.b2Body.b2_staticBody;
+                       b2Body.b2_dynamicBody :
+                       b2Body.b2_staticBody;
                        
-        bodyDef.position = new box2d.b2Vec2(this.position.x / PhysicsNode.physicsScale,
+        bodyDef.position = new b2Vec2(this.position.x / PhysicsNode.physicsScale,
                                             this.position.y / PhysicsNode.physicsScale);
                                             
-        bodyDef.angle = geom.degreesToRadians(this.rotation);
+        bodyDef.angle = cc.degreesToRadians(this.rotation);
         bodyDef.fixedRotation = args.fixedRotation ? args.fixedRotation : false;
 
-        var fixDef = new box2d.b2FixtureDef();
+        var fixDef = new b2FixtureDef();
         fixDef.density = args.density ? args.density : (args.isStatic ? 0.0 : 1.0);
         fixDef.friction = args.friction ? args.friction : 0.1;
         fixDef.restitution = args.restitution ? args.restitution : 0.1;
         fixDef.isSensor = args.isSensor ? args.isSensor : false;
         
         var boundingBox = args.boundingBox ? 
-                new geom.Rect(0,0, args.boundingBox.size.width / PhysicsNode.physicsScale,
+                new cc.Rect(0,0, args.boundingBox.size.width / PhysicsNode.physicsScale,
                                    args.boundingBox.size.height / PhysicsNode.physicsScale) :
-                new geom.Rect(0,0, this.contentSize.width / PhysicsNode.physicsScale,
+                new cc.Rect(0,0, this.contentSize.width / PhysicsNode.physicsScale,
                                    this.contentSize.height / PhysicsNode.physicsScale);
         
         var shape;
         if (args.shapeType == "circle") {
-            shape = new box2d.b2CircleShape(boundingBox.size.width/2);
+            shape = new b2CircleShape(boundingBox.size.width/2);
             
         } else {
             if (this.createCustomShapeType) {
                 shape = this.createCustomShapeType(args);
             }
             if (!shape) {
-                shape = new box2d.b2PolygonShape();
+                shape = new b2PolygonShape();
                 shape.SetAsBox(boundingBox.size.width/2, boundingBox.size.height/2);
             }
         }
@@ -104,9 +100,7 @@ PhysicsNode.inherit(cocos.nodes.Node, {
     synchronizePosition: function() {
         this.position.x = this.body.GetPosition().x * PhysicsNode.physicsScale;
         this.position.y = this.body.GetPosition().y * PhysicsNode.physicsScale;
-        this.rotation = geom.radiansToDegrees(-this.body.GetAngle());
+        this.rotation = cc.radiansToDegrees(-this.body.GetAngle());
      //   console.log(this.position.x + "," + this.position.y);
     }
 });
-
-module.exports = PhysicsNode

@@ -1,6 +1,3 @@
-var cocos = require("cocos2d");
-
-
 function Input() {
     this.keysDown = {}
     this.keyNamesToKeyCodes = {
@@ -126,6 +123,3 @@ function Input() {
 
 
 Input.instance = new Input();
-
-
-module.exports = Input

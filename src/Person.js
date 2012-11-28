@@ -1,35 +1,28 @@
-var cocos = require("cocos2d"),
-    geom  = require("geometry"),
-    box2d = require("box2d"),
-    PhysicsNode = require("/PhysicsNode"),
-    Input = require("/Input"),
-    TextLine = require("/TextLine");
-
 function Person() {
     Person.superclass.constructor.call(this)
-    var texture = new cocos.Texture2D({ file: "/gfx/player.png" });
+    var texture = new cc.Texture2D({ file: "/gfx/player.png" });
 
-    var animFrames = [ new cocos.SpriteFrame({ texture: texture, rect: new geom.Rect(32 * 0, 64 * 0, 32, 64) })
-                     , new cocos.SpriteFrame({ texture: texture, rect: new geom.Rect(32 * 1, 64 * 0, 32, 64) })
-                     , new cocos.SpriteFrame({ texture: texture, rect: new geom.Rect(32 * 2, 64 * 0, 32, 64) })
-                     , new cocos.SpriteFrame({ texture: texture, rect: new geom.Rect(32 * 1, 64 * 0, 32, 64) })
-                     , new cocos.SpriteFrame({ texture: texture, rect: new geom.Rect(32 * 0, 64 * 0, 32, 64) })
+    var animFrames = [ new cc.SpriteFrame({ texture: texture, rect: new cc.Rect(32 * 0, 64 * 0, 32, 64) })
+                     , new cc.SpriteFrame({ texture: texture, rect: new cc.Rect(32 * 1, 64 * 0, 32, 64) })
+                     , new cc.SpriteFrame({ texture: texture, rect: new cc.Rect(32 * 2, 64 * 0, 32, 64) })
+                     , new cc.SpriteFrame({ texture: texture, rect: new cc.Rect(32 * 1, 64 * 0, 32, 64) })
+                     , new cc.SpriteFrame({ texture: texture, rect: new cc.Rect(32 * 0, 64 * 0, 32, 64) })
     ];
 
-    this.sprite = new cocos.nodes.Sprite({
+    this.sprite = new cc.Sprite({
         texture:texture,
         rect: animFrames[0].rect
     });
     
-    var animation = new cocos.Animation({ frames: animFrames, delay: 0.2 })
-      , animate   = new cocos.actions.Animate({ animation: animation, restoreOriginalFrame: false });
-    this.idleSeq  = new cocos.actions.Sequence({ actions: [animate] });
+    var animation = new cc.Animation({ frames: animFrames, delay: 0.2 })
+      , animate   = new cc.Animate({ animation: animation, restoreOriginalFrame: false });
+    this.idleSeq  = new cc.Sequence({ actions: [animate] });
 
-    this.sprite.anchorPoint = new geom.Point(0.5,0.5);
+    this.sprite.anchorPoint = new cc.Point(0.5,0.5);
     this.contentSize = this.sprite.contentSize;
     this.addChild({child:this.sprite});
     
-    this.sprite.runAction(new cocos.actions.RepeatForever(this.idleSeq));
+    this.sprite.runAction(new cc.RepeatForever(this.idleSeq));
 }
 
 Person.inherit(PhysicsNode, {
@@ -54,8 +47,8 @@ Person.inherit(PhysicsNode, {
         if (this.textLine) {
         
             this.textLine.update(dt);
-            this.textLine.position = new geom.Point(this.position.x, this.position.y + this.contentSize.height);
-            this.textLine.anchorPoint = new geom.Point(0.5,0.5);
+            this.textLine.position = new cc.Point(this.position.x, this.position.y + this.contentSize.height);
+            this.textLine.anchorPoint = new cc.Point(0.5,0.5);
             
             if (this.textLine.delay < this.textLine.timePassed) {
                 if (this.textLine.parent) {
@@ -69,7 +62,7 @@ Person.inherit(PhysicsNode, {
                 
                 if (this.lineQueue.length > 0) {
                     this.textLine = this.lineQueue[0];
-                    this.textLine.position = new geom.Point(this.position.x, this.position.y + this.contentSize.height);
+                    this.textLine.position = new cc.Point(this.position.x, this.position.y + this.contentSize.height);
                     this.lineQueue.splice(0,1);
                     this.parent.addChild(this.textLine);
                 }
@@ -77,7 +70,7 @@ Person.inherit(PhysicsNode, {
         } else {
             if (this.lineQueue.length > 0) {
                 this.textLine = this.lineQueue[0];
-                this.textLine.position = new geom.Point(this.position.x, this.position.y + this.contentSize.height);
+                this.textLine.position = new cc.Point(this.position.x, this.position.y + this.contentSize.height);
                 this.lineQueue.splice(0,1);
                 this.parent.addChild(this.textLine);
             }
@@ -89,20 +82,20 @@ Person.inherit(PhysicsNode, {
             var r = Math.atan2(planet.body.GetPosition().x -this.body.GetPosition().x ,
                                this.body.GetPosition().y - planet.body.GetPosition().y);
                                 
-            this.rotation = -geom.radiansToDegrees(r);
+            this.rotation = -cc.radiansToDegrees(r);
             this.body.SetAngle(r);
         }
         
     },
     
     createPhysics: function(world, ops) {
-        ops.boundingBox = ops.boundingBox || new geom.Rect(0,0, 15,64);
+        ops.boundingBox = ops.boundingBox || new cc.Rect(0,0, 15,64);
         Person.superclass.createPhysics.call(this, world, ops);
     },
     
     useAction: function() {
         /*
-        var aabb = new box2d.b2AABB()
+        var aabb = new b2AABB()
         aabb.lowerBound.Set(this.body.GetPosition().x - 0.001, this.body.GetPosition().y - 0.001)
         aabb.upperBound.Set(this.body.GetPosition().x + 0.001, this.body.GetPosition().y + 0.001)
 
@@ -143,7 +136,7 @@ Person.inherit(PhysicsNode, {
         }
         this.canMove = false;
         this.isDead = true;
-//        this.body.SetLinearVelocity(new box2d.b2Vec2(0,0));
+//        this.body.SetLinearVelocity(new b2Vec2(0,0));
         this.body.SetFixedRotation(false);
         this.body.ApplyTorque(90);
         this.say([new TextLine({string: 'Uarghs!', delay:1, onEndedCallback:onDeath})]);
@@ -156,7 +149,7 @@ Person.inherit(PhysicsNode, {
         	var yImpulse = Math.sin(-this.body.GetAngle()) * (this.speed);
 	        var xImpulse = Math.cos(-this.body.GetAngle()) * (this.speed);
 
-            this.body.ApplyImpulse(new box2d.b2Vec2(-xImpulse, yImpulse), this.body.GetWorldCenter());
+            this.body.ApplyImpulse(new b2Vec2(-xImpulse, yImpulse), this.body.GetWorldCenter());
         }
     },
     
@@ -167,7 +160,7 @@ Person.inherit(PhysicsNode, {
         	var yImpulse = Math.sin(this.body.GetAngle()) * (this.speed);
 	        var xImpulse = Math.cos(this.body.GetAngle()) * (this.speed);
         
-            this.body.ApplyImpulse(new box2d.b2Vec2(xImpulse, yImpulse), this.body.GetWorldCenter());
+            this.body.ApplyImpulse(new b2Vec2(xImpulse, yImpulse), this.body.GetWorldCenter());
         }
     },
     
@@ -180,7 +173,7 @@ Person.inherit(PhysicsNode, {
         	var xImpulse = Math.sin(this.body.GetAngle()) * (this.jumpSpeed);
             var yImpulse = Math.cos(this.body.GetAngle()) * (this.jumpSpeed);
         
-            this.body.ApplyImpulse(new box2d.b2Vec2(-xImpulse, yImpulse), this.body.GetWorldCenter());
+            this.body.ApplyImpulse(new b2Vec2(-xImpulse, yImpulse), this.body.GetWorldCenter());
             this.jumpImpulses--;
         }
     },
@@ -193,4 +186,3 @@ Person.inherit(PhysicsNode, {
     }
 });
 
-module.exports = Person;

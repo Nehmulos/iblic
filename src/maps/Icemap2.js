@@ -1,17 +1,3 @@
-var cocos = require("cocos2d"),
-    geom  = require("geometry"),
-    box2d = require("box2d"),
-    PhysicsNode = require("/PhysicsNode"),
-    Input = require("/Input"),
-    TextLine = require("/TextLine"),
-    Map = require("/Map"),
-    Person = require("/Person"),
-    Planet = require("/Planet"),
-    Crate  = require("/Crate"),
-    IceCream  = require("/IceCream"),
-    MapPortal = require("/MapPortal"),
-    Spikes = require("/Spikes");
-
 function Icemap2() {
     Icemap2.superclass.constructor.call(this)
     
@@ -31,7 +17,7 @@ Icemap2.inherit(Map, {
         
         Icemap2.superclass.constructor.call(this, game)
         // Get size of canvas
-        var s = cocos.Director.sharedDirector.winSize
+        var s = cc.Director.sharedDirector.winSize
     
         var planet = new Planet();
         planet.position = new geom.Point(s.width/2, s.height/2);
@@ -64,7 +50,7 @@ Icemap2.inherit(Map, {
         rightSpikes.createPhysics(game.world, {isStatic:true, boundingBox:rightSpikes.smallBox});
         game.addChild({child:rightSpikes});
         
-        var deadlySign = new cocos.nodes.Sprite({
+        var deadlySign = new cc.Sprite({
             file: "/gfx/deadlyspikessign.png",
             rect: new geom.Rect(0,0, 72, 71)
         });
@@ -72,7 +58,7 @@ Icemap2.inherit(Map, {
         deadlySign.zOrder = -1;
         deadlySign.rotation = 45;
         
-        var moveAction = new cocos.actions.MoveTo({ 
+        var moveAction = new cc.MoveTo({ 
             position: new geom.Point(s.width/2 + 110, s.height/2 + 110),
             duration: 1
         })
@@ -96,8 +82,8 @@ Icemap2.inherit(Map, {
     
     
     showCredits: function() {
-        var s = cocos.Director.sharedDirector.winSize
-        var credits = new cocos.nodes.Sprite({
+        var s = cc.Director.sharedDirector.winSize
+        var credits = new cc.Sprite({
             file: "/gfx/credits.png",
             rect: new geom.Rect(0,0, 133, 45)
         });
@@ -105,7 +91,7 @@ Icemap2.inherit(Map, {
         credits.position = new geom.Point(s.width, 0);
         credits.zOrder = 10;
         
-        var moveAction = new cocos.actions.MoveTo({ 
+        var moveAction = new cc.MoveTo({ 
             position: new geom.Point(s.width, 45),
             duration: 2
         })
@@ -126,4 +112,3 @@ Icemap2.inherit(Map, {
     },
 });
 
-module.exports = Icemap2;

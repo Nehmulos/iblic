@@ -1,15 +1,8 @@
-var cocos = require("cocos2d"),
-    box2d = require("box2d"),
-    TextLine = require("/TextLine"),
-    Game = require("/Game"),
-    GameEngine = require("/GameEngine");
-
-
 function ContactListener() {
 
 }
 
-ContactListener.inherit(box2d.b2ContactListener, {
+ContactListener.inherit(b2ContactListener, {
     BeginContact: function(contact, manifold) {
         var objectA = contact.GetFixtureA().GetBody().GetUserData();
         var objectB = contact.GetFixtureB().GetBody().GetUserData();
@@ -108,4 +101,3 @@ ContactListener.inherit(box2d.b2ContactListener, {
 
 });
 
-module.exports = ContactListener;

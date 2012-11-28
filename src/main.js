@@ -1,27 +1,8 @@
-"use strict"  // Use strict JavaScript mode
-
-// Pull in the modules we're going to use
-var cocos  = require('cocos2d')   // Import the cocos2d module
-  , nodes  = cocos.nodes          // Convenient access to 'nodes'
-  , events = require('events')    // Import the events module
-  , geo    = require('geometry')  // Import the geometry module
-  , ccp    = geo.ccp              // Short hand to create points
-  , PhysicsNode = require("/PhysicsNode")
-  , Planet = require("/Planet")
-  , box2d  = require("box2d")
-  , Player = require("/Player")
-  , Crate  = require("/Crate")
-  , Input = require("/Input")
-  , GameEngine = require("/GameEngine")
-
-
 // Convenient access to some constructors
-var Layer    = nodes.Layer
-  , Scene    = nodes.Scene
-  , Label    = nodes.Label
-  , Director = cocos.Director
-
-
+var Layer    = cc.Layer
+  , Scene    = cc.Scene
+  , Label    = cc.Label
+  , Director = cc.Director
 
 var scene;
 /**
@@ -67,5 +48,3 @@ window.getResourcePath = function(cocosPath) {
 window.rrandom = function(minValue, maxValue) {
     return (maxValue - minValue) * Math.random() + minValue;
 }
-
-exports.main = main

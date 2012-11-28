@@ -1,15 +1,10 @@
-var cocos = require("cocos2d"),
-    geom  = require("geometry"),
-    box2d = require("box2d"),
-    PhysicsNode = require("/PhysicsNode");
-
 function Planet() {
     Planet.superclass.constructor.call(this)
-    this.sprite = new cocos.nodes.Sprite({
+    this.sprite = new cc.Sprite({
         file: "/gfx/planet.png",
-        rect: new geom.Rect(0,0,256, 256)
+        rect: new cc.Rect(0,0,256, 256)
     });
-    this.sprite.anchorPoint = new geom.Point(0.5,0.5);
+    this.sprite.anchorPoint = new cc.Point(0.5,0.5);
     this.contentSize = this.sprite.contentSize;
     this.addChild({child:this.sprite});
 }
@@ -29,7 +24,7 @@ Planet.inherit(PhysicsNode, {
             if (body != this.body) {
                 var xDistance = body.GetPosition().x - this.body.GetPosition().x;
                 var yDistance = body.GetPosition().y - this.body.GetPosition().y;
-                var force = new box2d.b2Vec2(-xDistance*this.gravityModifier,
+                var force = new b2Vec2(-xDistance*this.gravityModifier,
                                              -yDistance*this.gravityModifier);
                                              
                 
@@ -41,5 +36,3 @@ Planet.inherit(PhysicsNode, {
         
     }
 });
-
-module.exports = Planet;

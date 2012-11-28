@@ -1,10 +1,3 @@
-var cocos = require("cocos2d"),
-    ParallelWorld1 = require("/maps/ParallelWorld1"),
-    Ph0toshop = require("/maps/Ph0toshop"),
-    StartScreen = require("/maps/StartScreen"),
-    Icemap2 = require("/maps/Icemap2"),
-    Credits = require("/maps/Credits")
-
 function Maplist() {
     Maplist.superclass.constructor.call(this)
     this.maps["Startmap"] = this.maps["StartScreen"];
@@ -19,4 +12,3 @@ Maplist.inherit(Object, {
     }
 });
 
-module.exports = Maplist;

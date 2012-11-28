@@ -1,5 +1,3 @@
-var cocos = require("cocos2d");
-
 function PlayerProfile() {
     PlayerProfile.superclass.constructor.call(this)
     
@@ -86,5 +84,3 @@ PlayerProfile.inherit(Object, {
     },
     
 })
-
-module.exports = PlayerProfile;

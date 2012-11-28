@@ -1,11 +1,3 @@
-var cocos = require("cocos2d"),
-    geom  = require("geometry"),
-    box2d = require("box2d"),
-    PhysicsNode = require("/PhysicsNode"),
-    Input = require("/Input"),
-    TextLine = require("/TextLine"),
-    Person = require("/Person");
-
 function Player() {
     Player.superclass.constructor.call(this)
 }
@@ -27,7 +19,7 @@ Player.inherit(Person, {
         this.destroyed = false;
         this.canMove = true;
         this.isDead = false;
-        this.sprite.runAction(new cocos.actions.RepeatForever(this.idleSeq));
+        this.sprite.runAction(new cc.RepeatForever(this.idleSeq));
     },
     
     update:function(dt) {
@@ -54,5 +46,3 @@ Player.inherit(Person, {
         }
     },
 });
-
-module.exports = Player;
