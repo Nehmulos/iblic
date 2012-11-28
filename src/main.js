@@ -13,7 +13,7 @@ $(function() {
 
     // Get director singleton
     var director = cc.Director.sharedDirector;
-    director.backgroundColor = "rgb(200,200,200)";
+    //director.backgroundColor = "rgb(200,200,200)";
     director.attachInView(document.getElementById('cocos2d-app'));
     director.displayFPS = false;
 
