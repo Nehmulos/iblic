@@ -53,6 +53,7 @@
             }
             ul { list-style: none; }
             #cocos2d-app {
+                position:relative;
                 zoom: 75%
                 border: 1px solid #000;
                 width: 640px;
@@ -76,12 +77,25 @@
     <body>
         <h1>Ld23</h1>
         <div id="cocos2d-app">
-            Loading Ld23...
+            Loading Game... <br/>
+            <br/>
+            <br/>
+            (in case it's not, update your browser to Chrome 18 / Firefox 11 / stop using Internet Explorer)
+            <br/>
+            <br/>
+            If you are blocking JavaScript, take off your tinfoil helmet and add an exception for this game.
+            <br/>
+            <br/>
+            We promise not to steal your brainwaves*.
+            <div style="position:absolute; bottom:0; left:0; width:100%;">
+            *unintended loss of brainwaves may occure
+            </div>
         </div>
         <span>use the keyboard to move through the world</span>
         <br/>
         <ul>
-            <li><b>W / A / D</b><span> - Jump / Go Left / Go Right</span></li>
+            <li><b>A / D</b><span> - Go Left / Right</span></li>
+            <li><b>W</b><span> - hold to Jump</span></li>
             <li><b>S</b><span> - Enter building / Talk / Action</span></li>
             <li><b>Enter</b><span> - Restart map</span></li>
             <li><b>N</b><span> - Enter player-name</span></li>
