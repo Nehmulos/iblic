@@ -27,15 +27,15 @@ GameEngine.inherit(Layer, {
     paused: false,
     
     update: function(dt) {
+    
+        if (this.paused) {
+            return;
+        }
 
         // max out on 1 second
         dt > 1.0 ? dt = 1.0 : 0;
         this.game.world.Step(dt, 3);
         this.game.world.ClearForces();
-        
-        if (this.paused) {
-            return;
-        }
         
         var body = this.game.world.GetBodyList();
         while(body) {
@@ -60,11 +60,11 @@ GameEngine.inherit(Layer, {
     keyDown: function(event) {
         Input.instance.keysDown[event.keyCode] = true;
         
-        if (event.keyCode == 13) {
+        if (event.keyCode == 13) { // enter key
             this.game.reset();
         }
         
-        if (event.keyCode == 8) {
+        if (event.keyCode == 8) { // backspace key
             var okay = confirm("delete savegame, progress and statistics?");
             if (okay) {
                 this.removeChild(this.game);
@@ -75,7 +75,7 @@ GameEngine.inherit(Layer, {
             }
         }
         
-        if (event.keyCode == 78) {
+        if (event.keyCode == 78) { // n key
             var name = this.playerProfile.name;
             name = prompt("Enter your name", name);
             if (name != null) {
