@@ -20,6 +20,7 @@ Player.inherit(Person, {
         this.canMove = true;
         this.isDead = false;
         this.sprite.runAction(new cc.RepeatForever(this.idleSeq));
+        this.sprite.opacity = 255;
     },
     
     update:function(dt) {
@@ -28,6 +29,8 @@ Player.inherit(Person, {
         // w pressed
         if (Input.instance.keysDown[87]) {
             this.jump();
+        } else if(this.groundedCount <= 0) {
+            this.jumpImpulses = 0;
         }
         
         // s pressed
