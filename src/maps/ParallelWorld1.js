@@ -73,10 +73,10 @@ ParallelWorld1.inherit(Map, {
             game.player.position = new cc.Point(s.width/2, s.height);
             game.player.rotation = 0;
             
-            game.player.say([new TextLine({string: 'WOW, what happend!?!', delay:2}),
-                         new TextLine({string: 'Everything looks so different.', delay:3}),
-                         new TextLine({string: 'Like some crazy paralell world.', delay:3}),
-                         new TextLine({string: 'I should investigate further.', delay:2, onEndedCallback: spawnPh0toshop})
+            game.player.say([new TextLine({string: 'WOW, what happend!?!', delay:1.3}),
+                         new TextLine({string: 'Everything looks so different.', delay:2}),
+                         new TextLine({string: 'Like some crazy paralell world.', delay:2}),
+                         new TextLine({string: 'I should investigate further.', delay:1.3, onEndedCallback: spawnPh0toshop})
             ]);
         } else {
             spawnPh0toshop("instant");
