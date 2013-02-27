@@ -20,6 +20,7 @@ Player.inherit(Person, {
         this.canMove = true;
         this.isDead = false;
         this.sprite.runAction(new cc.RepeatForever(this.idleSeq));
+        this.sprite.opacity = 255;
     },
     
     update:function(dt) {

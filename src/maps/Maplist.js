@@ -11,7 +11,8 @@ Maplist.inherit(Object, {
         "Icemap2":        new Icemap2(),
         "ParallelWorld1": new ParallelWorld1(),
         "Ph0toshop":      new Ph0toshop(),
-        "Ep1-Credits":    new Credits()
+        "Ep1-Credits":    new Credits(),
+        "UfoWelcomeMap":  new UfoWelcomeMap()
     }
     
 });
