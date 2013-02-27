@@ -41,8 +41,11 @@ UfoWelcomeMap.inherit(Map, {
         }
         })
         ]);
-        var alien1 = new Person();
-        var alien2 = new Person();
+        
+        var alien1 = new Alien();
+        var alien2 = new Alien();
+        alien1.position = new cc.Point(s.width/2, s.height/2);
+        alien2.position = new cc.Point(s.width/2 + alien1.contentSize.width, s.height/2);
         game.addChild(alien1);
         game.addChild(alien2);
     },
