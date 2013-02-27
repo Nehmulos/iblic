@@ -102,7 +102,7 @@ ParallelWorld1.inherit(Map, {
                 var ice = new IceCream();
                 ice.position = new cc.Point(s.width/2, s.height);
                 ice.createPhysics(game.world, {});
-                ice.map = "Credits";
+                ice.map = "ep1-Credits";
                 ice.eatDelay = 5;
                 var self = this;
                 ice.onEatCallback = function() {
