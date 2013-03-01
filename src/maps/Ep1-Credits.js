@@ -1,6 +1,6 @@
+// TODO add skip ffwrd buttons and start UfoWelcome map
 function Credits() {
     Credits.superclass.constructor.call(this)
-    
 }
 
 Credits.inherit(Map, {

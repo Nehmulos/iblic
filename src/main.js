@@ -32,6 +32,8 @@ $(function() {
     registerResource("gfx/credits.png", "image/png");
     registerResource("gfx/insideph0toshop.png", "image/png");
     registerResource("gfx/insideph0toshopbar.png", "image/png");
+    registerResource("gfx/UfoWelcomeMap.png", "image/png");
+    registerResource("gfx/alien.png", "image/png");
 
     // Wait for the director to finish preloading our assets
     cc.addListener(director, 'ready', function (director) {
