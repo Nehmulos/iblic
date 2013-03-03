@@ -15,7 +15,7 @@ UfoWelcomeMap.inherit(Map, {
         UfoWelcomeMap.superclass.constructor.call(this, game)
         this.game = game;
         
-        game.player.position = new cc.Point(62, s.height/2-41);
+        game.player.position = new cc.Point(62, s.height/2+200);
         game.player.rotation = 0;
         game.player.createPhysics(game.world, {fixedRotation:true});
         game.player.body.SetAngle(cc.degreesToRadians(0));
@@ -23,7 +23,7 @@ UfoWelcomeMap.inherit(Map, {
         game.player.flipX = false;
         game.addChild(game.player);
         
-        this.game.world.SetGravity(new b2Vec2(0,-40));
+        this.game.world.SetGravity(new b2Vec2(0,-55));
         var background = new cc.Sprite({
             file:"gfx/UfoWelcomeMap.png"
         });
@@ -31,7 +31,7 @@ UfoWelcomeMap.inherit(Map, {
         game.addChild(background);
         
         var ground = new PhysicsNode();
-        ground.position = new cc.Point(background.contentSize.width/2, (s.height/2)-80);
+        ground.position = new cc.Point(background.contentSize.width/2, (s.height/2)-45);
         ground.createPhysics(game.world, {isStatic:true, boundingBox:new cc.Rect(0,0,background.contentSize.width,10)});
         ground.isGround = true;
     
@@ -44,8 +44,8 @@ UfoWelcomeMap.inherit(Map, {
         
         var alien1 = new Alien();
         var alien2 = new Alien();
-        alien1.position = new cc.Point(s.width/2, s.height/2);
-        alien2.position = new cc.Point(s.width/2 + alien1.contentSize.width, s.height/2);
+        alien1.position = new cc.Point(450, 310);
+        alien2.position = new cc.Point(450+ alien1.contentSize.width, 310);
         game.addChild(alien1);
         game.addChild(alien2);
     },
