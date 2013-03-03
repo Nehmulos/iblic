@@ -15,7 +15,7 @@ UfoWelcomeMap.inherit(Map, {
         UfoWelcomeMap.superclass.constructor.call(this, game)
         this.game = game;
         
-        game.player.position = new cc.Point(62, s.height/2+200);
+        game.player.position = new cc.Point(72, s.height/2+200);
         game.player.rotation = 0;
         game.player.createPhysics(game.world, {fixedRotation:true});
         game.player.body.SetAngle(cc.degreesToRadians(0));
@@ -34,6 +34,14 @@ UfoWelcomeMap.inherit(Map, {
         ground.position = new cc.Point(background.contentSize.width/2, (s.height/2)-45);
         ground.createPhysics(game.world, {isStatic:true, boundingBox:new cc.Rect(0,0,background.contentSize.width,10)});
         ground.isGround = true;
+        
+        var leftWall = new PhysicsNode();
+        leftWall.position = new cc.Point(45, s.height/2);
+        leftWall.createPhysics(game.world, {isStatic:true, boundingBox:new cc.Rect(0,0,30,s.height)});
+        
+        var podiumWall = new PhysicsNode();
+        podiumWall.position = new cc.Point(375, s.height/2);
+        podiumWall.createPhysics(game.world, {isStatic:true, boundingBox:new cc.Rect(0,0,30,s.height)});
     
         this.playerFinishedTalking = false;
         game.player.say([new TextLine({string: "Hello?", delay:2, onEndedCallback: function() {
