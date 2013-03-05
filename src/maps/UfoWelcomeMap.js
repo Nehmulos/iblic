@@ -52,6 +52,7 @@ UfoWelcomeMap.inherit(Map, {
         
         var trapdoor = new Trapdoor();
         trapdoor.position = new cc.Point(250, 190);
+        trapdoor.open();
         game.addChild(trapdoor);
         
         var alien1 = new Alien();

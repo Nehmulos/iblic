@@ -19,12 +19,56 @@ Trapdoor.inherit(PhysicsNode, {
             texture:texture,
             rect: animFrames[0].rect
         });
+        
         this.addChild(this.sprite);
         
-        var animation = new cc.Animation({ frames: animFrames, delay: 0.4 })
-          , animate   = new cc.Animate({ animation: animation, restoreOriginalFrame: false });
-        this.openSeq  = new cc.Sequence({ actions: [animate] });
-        this.sprite.runAction(new cc.RepeatForever(this.openSeq));
+        // open
+        var animationOpen = new cc.Animation({ 
+            frames: animFrames,
+            delay: 0.4 
+        });
+        var animateOpen   = new cc.Animate({
+            animation: animationOpen, 
+            restoreOriginalFrame: false
+        });
+        this.openSeq = new cc.Sequence({ 
+            actions: [animateOpen] 
+        });
+        // close
+        var animationClose = new cc.Animation({ 
+            frames: animFrames.splice().reverse(),
+            delay: 0.4 
+        });
+        var animateClose   = new cc.Animate({
+            animation: animationClose, 
+            restoreOriginalFrame: false
+        });
+        this.closeSeq = new cc.Sequence({ 
+            actions: [animateClose] 
+        });
+    },
+    
+    open: function() {
+        var _this = this;
+        this.sprite.runAction(this.openSeq);
+        //TODO ask if there is some thing like onAnimationEnded; didn't find it
+        var interval = window.setInterval(function() {
+            if (_this.openSeq.isDone) {
+                console.log("DONE");
+                window.clearInterval(interval);
+            }
+        }, 10);
+    },
+    
+    close: function() {
+        var _this = this;
+        this.sprite.runAction(this.closeSeq);
+        var interval = window.setInterval(function() {
+            if (_this.openSeq.isDone) {
+                console.log("DONE");
+                window.clearInterval(interval);
+            }
+        }, 10);
     },
     
     update:function(dt) {
