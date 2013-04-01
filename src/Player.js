@@ -26,25 +26,25 @@ Player.inherit(Person, {
     update:function(dt) {
         Player.superclass.update.call(this, dt);
         
-        // w pressed
-        if (Input.instance.keysDown[87]) {
+        // w or up pressed
+        if (Input.instance.keysDown[87] || Input.instance.keysDown[38]) {
             this.jump();
         } else if(this.groundedCount <= 0) {
             this.jumpImpulses = 0;
         }
         
-        // s pressed
-        if (Input.instance.keysDown[83]) {
+        // s or down pressed
+        if (Input.instance.keysDown[83] || Input.instance.keysDown[40]) {
             this.useAction();
         }
         
-        // a pressed
-        if (Input.instance.keysDown[65]) {
+        // a or left pressed
+        if (Input.instance.keysDown[65] || Input.instance.keysDown[37]) {
             this.goLeft();
         }
 
-        // d pressed
-        if (Input.instance.keysDown[68]) {
+        // d  or right pressed
+        if (Input.instance.keysDown[68] || Input.instance.keysDown[39]) {
             this.goRight();
         }
     },
