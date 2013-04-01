@@ -34,6 +34,7 @@ $(function() {
     registerResource("gfx/insideph0toshopbar.png", "image/png");
     registerResource("gfx/UfoWelcomeMap.png", "image/png");
     registerResource("gfx/alien.png", "image/png");
+    registerResource("gfx/raptor.png", "image/png");
     registerResource("gfx/trapdoor.png", "image/png");
     
 

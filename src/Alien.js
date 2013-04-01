@@ -4,10 +4,6 @@ function Alien() {
 
 Alien.inherit(Person, {
     type: "alien",
-    onDeathCallback: function() {
-        this.game.engine.playerProfile.addDeath();
-        this.game.reset();
-    },
     
     loadTexture: function() {
         var texture = new cc.Texture2D({ file: "gfx/alien.png" });

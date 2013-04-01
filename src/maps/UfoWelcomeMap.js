@@ -51,8 +51,8 @@ UfoWelcomeMap.inherit(Map, {
         ]);
         
         var trapdoor = new Trapdoor();
-        trapdoor.position = new cc.Point(250, 190);
-        trapdoor.open();
+        trapdoor.position = new cc.Point(265, 190);
+        //trapdoor.open();
         game.addChild(trapdoor);
         
         var alien1 = new Alien();
@@ -61,6 +61,10 @@ UfoWelcomeMap.inherit(Map, {
         alien2.position = new cc.Point(450+ alien1.contentSize.width, 310);
         game.addChild(alien1);
         game.addChild(alien2);
+        
+        var raptor = new Raptor();
+        raptor.position = new cc.Point(500, 222);
+        game.addChild(raptor);
     },
     
     update:function(dt) {
