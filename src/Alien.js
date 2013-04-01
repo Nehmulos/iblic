@@ -26,25 +26,5 @@ Alien.inherit(Person, {
     
     update:function(dt) {
         Alien.superclass.update.call(this, dt);
-        
-        // w pressed
-        if (Input.instance.keysDown[87]) {
-            this.jump();
-        }
-        
-        // s pressed
-        if (Input.instance.keysDown[83]) {
-            this.useAction();
-        }
-        
-        // a pressed
-        if (Input.instance.keysDown[65]) {
-            this.goRight();
-        }
-
-        // d pressed
-        if (Input.instance.keysDown[68]) {
-            this.goLeft();
-        }
     },
 });

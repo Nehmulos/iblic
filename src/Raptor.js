@@ -24,5 +24,6 @@ Raptor.inherit(Person, {
     },
     
     update:function(dt) {
+        Raptor.superclass.update.call(this, dt);
     },
 });
